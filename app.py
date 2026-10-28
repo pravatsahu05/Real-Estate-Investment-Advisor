@@ -1,7 +1,7 @@
 """
-SOPHIA AI REAL ESTATE ADVISOR | Enterprise Real Estate Investment Advisory Terminal
-Predicting Property Profitability & Future Value with Machine Learning & MLOps Tracking.
-Matches the ultra-modern luxury dark & gold FinTech dashboard architecture.
+HOLOGRAPHIC GEOSPATIAL REAL ESTATE INVESTMENT TERMINAL
+3D Cyberpunk Interactive Analytics, Profitability Prediction & 20-Point Market Intelligence.
+Matches the high-tech 3D geospatial dashboard design with holographic city maps, price stats, valuation calculator, and category distributions.
 """
 
 import streamlit as st
@@ -24,8 +24,8 @@ from src.predictor import RealEstateAdvisorPredictor
 
 # Page Configuration: Full width, completely collapsed sidebar
 st.set_page_config(
-    page_title="SOPHIA | AI Real Estate Advisor",
-    page_icon="👑",
+    page_title="CyberProp 3D | Real Estate Investment Intelligence",
+    page_icon="🌐",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -39,10 +39,10 @@ def get_image_base64(path_str: str) -> str:
             return base64.b64encode(f.read()).decode("utf-8")
     return ""
 
-sophia_b64 = get_image_base64("assets/sophia_hero_hq.png") or get_image_base64("assets/sophia_hero.png") or get_image_base64("assets/sophia_portrait.png")
-alex_avatar_b64 = get_image_base64("assets/alex_avatar.png")
+city_map_b64 = get_image_base64("assets/holographic_city_map.png")
+thumb_3d_b64 = get_image_base64("assets/building_3d_thumb.png")
 
-# Ultra-Modern Dark & Gold Luxury Styling
+# High-Tech Cyberpunk Dark Grid Styling
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -57,24 +57,24 @@ st.markdown("""
     
     /* Full-width container polish */
     .main .block-container {
-        max-width: 1360px;
+        max-width: 1440px;
         padding-top: 0.8rem;
         padding-bottom: 2rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
     }
     
     :root {
-        --bg-navy: #070B14;
-        --card-navy: rgba(13, 20, 36, 0.75);
-        --gold-primary: #D4AF37;
-        --gold-light: #F5C518;
-        --gold-glow: rgba(212, 175, 55, 0.35);
-        --border-gold: rgba(212, 175, 55, 0.3);
-        --border-glass: rgba(255, 255, 255, 0.08);
+        --bg-cyber: #0B0E1E;
+        --card-cyber: rgba(18, 23, 48, 0.75);
+        --border-cyber: rgba(110, 125, 175, 0.18);
+        --neon-cyan: #00F2FE;
+        --neon-blue: #4FACFE;
+        --neon-purple: #9B51E0;
+        --neon-amber: #F2C94C;
+        --neon-green: #27AE60;
         --text-white: #FFFFFF;
-        --text-muted: #8E9DB2;
-        --emerald: #10B981;
+        --text-muted: #8A99AD;
     }
     
     html, body, [class*="css"] {
@@ -82,431 +82,273 @@ st.markdown("""
         color: #f1f5f9;
     }
     
+    /* Cyberpunk Midnight Grid Background */
     .stApp {
-        background-color: var(--bg-navy);
+        background-color: var(--bg-cyber);
         background-image: 
-            radial-gradient(at 50% 0%, rgba(21, 33, 58, 0.8) 0px, transparent 65%),
-            radial-gradient(at 10% 25%, rgba(212, 175, 55, 0.05) 0px, transparent 40%),
-            radial-gradient(at 90% 30%, rgba(16, 185, 129, 0.04) 0px, transparent 45%),
-            radial-gradient(at 50% 90%, rgba(13, 22, 42, 0.7) 0px, transparent 60%);
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            radial-gradient(at 15% 15%, rgba(155, 81, 224, 0.08) 0px, transparent 50%),
+            radial-gradient(at 85% 20%, rgba(0, 242, 254, 0.07) 0px, transparent 50%),
+            radial-gradient(at 50% 85%, rgba(79, 172, 254, 0.05) 0px, transparent 55%);
+        background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%, 100% 100%;
         background-attachment: fixed;
     }
     
-    /* Top Sophia Master Header */
-    .sophia-top-bar {
+    /* High-Tech Bento Cards */
+    .cyber-card {
+        background: rgba(17, 22, 45, 0.78);
+        border: 1px solid rgba(110, 125, 175, 0.18);
+        border-radius: 12px;
+        padding: 1rem 1.15rem;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        margin-bottom: 0.9rem;
+        position: relative;
+    }
+    
+    /* Bracket Headers [ TITLE ] Details > */
+    .bracket-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.85rem 1.4rem;
-        background: rgba(10, 16, 29, 0.85);
-        border: 1px solid rgba(212, 175, 55, 0.22);
-        border-radius: 18px;
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.75rem;
     }
     
-    .brand-logo-area {
+    .bracket-title {
+        font-size: 0.74rem;
+        font-weight: 800;
+        color: #8A99AD;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+    }
+    
+    .bracket-title span {
+        color: #FFFFFF;
+    }
+    
+    .bracket-link {
+        font-size: 0.7rem;
+        color: #70809A;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+    .bracket-link:hover {
+        color: #00F2FE;
+    }
+    
+    /* Amenity Filter Bar */
+    .filter-pills-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 0.9rem;
+    }
+    
+    .amenity-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .amenity-pill:hover {
+        transform: translateY(-1px);
+    }
+    
+    .p-police { background: rgba(108, 92, 231, 0.15); border: 1px solid rgba(108, 92, 231, 0.4); color: #D2B4DE; }
+    .p-school { background: rgba(241, 196, 15, 0.15); border: 1px solid rgba(241, 196, 15, 0.4); color: #F9E79F; }
+    .p-hospital { background: rgba(0, 206, 201, 0.15); border: 1px solid rgba(0, 206, 201, 0.4); color: #A3E4D7; }
+    .p-work { background: rgba(52, 152, 219, 0.15); border: 1px solid rgba(52, 152, 219, 0.4); color: #AED6F1; }
+    .p-restaurant { background: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.4); color: #A9DFBF; }
+    .p-hotel { background: rgba(26, 188, 156, 0.15); border: 1px solid rgba(26, 188, 156, 0.4); color: #A2D9CE; }
+    .p-market { background: rgba(231, 76, 60, 0.15); border: 1px solid rgba(231, 76, 60, 0.4); color: #F5B7B1; }
+    
+    /* 3D Map Viewport */
+    .map-viewport {
+        border: 1px solid rgba(0, 242, 254, 0.22);
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+        margin-bottom: 0.9rem;
+        background: #080B18;
+    }
+    
+    .map-viewport img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    /* Rental Demand Mini Tiles */
+    .rental-sub-box {
+        background: rgba(14, 18, 38, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 10px;
+        padding: 0.75rem 0.9rem;
         display: flex;
         align-items: center;
         gap: 12px;
     }
     
-    .brand-title {
-        font-size: 1.28rem;
+    .rental-icon-circle {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: rgba(0, 242, 254, 0.12);
+        border: 1px solid rgba(0, 242, 254, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+    
+    .rental-val-big {
+        font-size: 1.25rem;
         font-weight: 800;
-        letter-spacing: 1.2px;
+        font-family: 'JetBrains Mono', monospace;
         color: #FFFFFF;
         line-height: 1.1;
     }
     
-    .brand-sub {
-        font-size: 0.64rem;
-        font-weight: 700;
-        letter-spacing: 1.8px;
-        color: #D4AF37;
-        text-transform: uppercase;
-    }
-    
-    .user-profile-badge {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    
-    .bell-icon-wrap {
-        position: relative;
-        font-size: 1.15rem;
-        color: #94a3b8;
-        cursor: pointer;
-        padding-right: 4px;
-    }
-    
-    .bell-dot {
-        position: absolute;
-        top: -1px;
-        right: 2px;
-        width: 7px;
-        height: 7px;
-        background: #ef4444;
-        border-radius: 50%;
-        box-shadow: 0 0 6px #ef4444;
-    }
-    
-    .user-avatar-circle {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: 1.5px solid #D4AF37;
-        overflow: hidden;
-        background: #111827;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-    }
-    
-    .user-info-text {
-        line-height: 1.2;
-    }
-    
-    .user-name {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #FFFFFF;
-    }
-    
-    .user-portfolio {
+    .green-badge-up {
         font-size: 0.7rem;
-        font-weight: 600;
-        color: #D4AF37;
+        font-weight: 700;
+        color: #2ECC71;
+        margin-left: 6px;
     }
     
-    /* Sophia Hero Interactive Stage */
-    .sophia-hero-stage {
-        background: linear-gradient(180deg, rgba(14, 22, 40, 0.8) 0%, rgba(8, 14, 27, 0.95) 100%);
-        border: 1px solid rgba(212, 175, 55, 0.28);
-        border-radius: 20px;
-        padding: 1.25rem 1.6rem;
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 215, 0, 0.12);
-        margin-bottom: 1.4rem;
-        position: relative;
-    }
-    
-    .stage-top-meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.8rem;
-    }
-    
-    .active-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.74rem;
-        font-weight: 800;
-        color: #22c55e;
-        letter-spacing: 0.8px;
-        text-transform: uppercase;
-    }
-    
-    .active-green-dot {
-        width: 8px;
-        height: 8px;
-        background: #22c55e;
-        border-radius: 50%;
-        box-shadow: 0 0 8px #22c55e;
-    }
-    
-    .dots-menu {
-        color: #64748b;
-        font-size: 1.1rem;
-        letter-spacing: 2px;
-        cursor: pointer;
-    }
-    
-    /* Sophia Portrait Frame */
-    .portrait-wrap {
-        width: 155px;
-        height: 155px;
-        margin: 0 auto;
-        border-radius: 50%;
-        border: 2.5px solid #D4AF37;
-        box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-        background: #0d1527;
-        position: relative;
-    }
-    
-    .portrait-wrap img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    /* Sophia Chat Bubbles */
-    .chat-bubble-user {
-        background: #141f36;
+    /* Expand Search Chips */
+    .chip-search {
+        display: inline-block;
+        background: rgba(22, 28, 56, 0.85);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        padding: 8px 14px;
-        color: #f1f5f9;
-        font-size: 0.82rem;
-        line-height: 1.4;
-        margin-bottom: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    .chat-bubble-sophia {
-        background: rgba(18, 28, 48, 0.85);
-        border: 1px solid rgba(212, 175, 55, 0.25);
-        border-radius: 12px;
-        padding: 9px 14px;
-        color: #e2e8f0;
-        font-size: 0.82rem;
-        line-height: 1.4;
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        margin-bottom: 10px;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-    }
-    
-    .sophia-chat-icon {
-        color: #F5C518;
-        font-size: 1rem;
-        margin-top: 1px;
-    }
-    
-    /* Portfolio Performance Container */
-    .portfolio-perf-container {
-        border: 1.5px solid rgba(212, 175, 55, 0.38);
-        border-radius: 20px;
-        background: rgba(10, 16, 30, 0.78);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        padding: 1.4rem 1.6rem;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 215, 0, 0.1);
-        margin-bottom: 1.8rem;
-    }
-    
-    .perf-header-title {
-        text-align: center;
-        font-size: 0.95rem;
-        font-weight: 800;
-        color: #F5C518;
-        letter-spacing: 2.2px;
-        text-transform: uppercase;
-        margin-bottom: 1.2rem;
-        position: relative;
-    }
-    
-    /* Performance Grid Cards */
-    .perf-card {
-        background: rgba(14, 22, 38, 0.7);
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        border-radius: 14px;
-        padding: 1rem 1.15rem;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    
-    .card-top-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 6px;
-    }
-    
-    .card-title-text {
-        font-size: 0.72rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.9px;
-        color: #cbd5e1;
-    }
-    
-    .time-pills {
-        display: flex;
-        gap: 3px;
-    }
-    
-    .time-pill {
-        font-size: 0.62rem;
-        font-weight: 600;
-        color: #8E9DB2;
-        padding: 1px 5px;
-        border-radius: 4px;
-        background: rgba(255, 255, 255, 0.05);
-        cursor: pointer;
-    }
-    
-    .time-pill.active {
-        color: #0b111e;
-        background: #F5C518;
-        font-weight: 700;
-    }
-    
-    .metric-hero-val {
-        font-size: 1.35rem;
-        font-weight: 800;
-        color: #FFFFFF;
-        font-family: 'JetBrains Mono', monospace;
-        margin-bottom: 4px;
-    }
-    
-    /* Investment Summary 3 Pillars */
-    .summary-metric-box {
-        background: rgba(11, 18, 32, 0.85);
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        border-radius: 12px;
-        padding: 0.75rem 1rem;
-        margin-bottom: 8px;
-        text-align: center;
-    }
-    
-    .summary-val {
-        font-size: 1.35rem;
-        font-weight: 800;
-        font-family: 'JetBrains Mono', monospace;
-    }
-    
-    .summary-lbl {
+        border-radius: 6px;
+        padding: 3px 10px;
         font-size: 0.68rem;
         font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        color: #8E9DB2;
+        color: #8A99AD;
+        margin: 2px 3px 2px 0;
+        cursor: pointer;
     }
     
     /* Structured Analytical Insight & Recommendation Blocks */
     .insight-block {
-        background: rgba(10, 16, 29, 0.85);
+        background: rgba(13, 17, 36, 0.88);
         border: 1px solid rgba(255, 255, 255, 0.06);
-        border-left: 3.5px solid #D4AF37;
-        border-radius: 10px;
-        padding: 0.75rem 1rem;
-        margin-top: 0.6rem;
-        margin-bottom: 0.8rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+        border-left: 3.5px solid #00F2FE;
+        border-radius: 8px;
+        padding: 0.65rem 0.9rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.6rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
     
     .insight-row-text {
-        font-size: 0.81rem;
+        font-size: 0.78rem;
         color: #cbd5e1;
-        line-height: 1.45;
-        margin-bottom: 0.35rem;
+        line-height: 1.4;
+        margin-bottom: 0.25rem;
     }
     
     .rec-row-text {
-        font-size: 0.81rem;
+        font-size: 0.78rem;
         color: #f1f5f9;
-        line-height: 1.45;
+        line-height: 1.4;
     }
     
     .badge-insight {
-        color: #F5C518;
+        color: #00F2FE;
         font-weight: 700;
     }
     
     .badge-rec {
-        color: #34d399;
+        color: #2ECC71;
         font-weight: 700;
     }
     
-    /* Streamlit Tabs Customization - Navbar Pills */
+    /* Streamlit Tabs Navigation */
     .stTabs [data-baseweb="tab-list"] {
         display: flex;
         justify-content: center;
         background: transparent;
         border: none;
         gap: 8px;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1rem;
     }
     
     .stTabs [data-baseweb="tab"] {
-        background: rgba(14, 22, 38, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
-        padding: 7px 22px;
-        color: #8E9DB2;
-        font-size: 0.85rem;
-        font-weight: 600;
+        background: rgba(17, 22, 45, 0.75);
+        border: 1px solid rgba(110, 125, 175, 0.2);
+        border-radius: 8px;
+        padding: 6px 18px;
+        color: #8A99AD;
+        font-size: 0.82rem;
+        font-weight: 700;
         height: auto;
+        letter-spacing: 0.5px;
     }
     
     .stTabs [aria-selected="true"] {
-        background: rgba(212, 175, 55, 0.15) !important;
-        border: 1.5px solid #D4AF37 !important;
+        background: rgba(0, 242, 254, 0.12) !important;
+        border: 1.5px solid #00F2FE !important;
         color: #FFFFFF !important;
-        box-shadow: 0 0 16px rgba(212, 175, 55, 0.3) !important;
+        box-shadow: 0 0 14px rgba(0, 242, 254, 0.35) !important;
     }
     
     /* Form & Input Polish */
     div[data-baseweb="select"] > div,
     div[data-baseweb="input"] > div {
-        background-color: rgba(13, 20, 36, 0.85) !important;
-        border-color: rgba(212, 175, 55, 0.25) !important;
+        background-color: rgba(14, 18, 38, 0.9) !important;
+        border-color: rgba(0, 242, 254, 0.25) !important;
         color: #ffffff !important;
-        border-radius: 10px !important;
+        border-radius: 8px !important;
     }
     
     .stButton > button {
-        background: linear-gradient(135deg, #F5C518 0%, #D4AF37 100%) !important;
-        color: #070B14 !important;
-        font-weight: 800 !important;
+        background: #4A69BD !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
         border: none !important;
-        border-radius: 12px !important;
-        padding: 0.6rem 1.4rem !important;
-        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35) !important;
-        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        border-radius: 8px !important;
+        padding: 0.55rem 1.2rem !important;
+        box-shadow: 0 4px 15px rgba(74, 105, 189, 0.35) !important;
+        transition: transform 0.15s ease !important;
     }
-    
     .stButton > button:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5) !important;
-    }
-    
-    .driver-pill {
-        background: rgba(14, 22, 38, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-left: 3px solid #D4AF37;
-        border-radius: 8px;
-        padding: 0.6rem 0.95rem;
-        font-size: 0.83rem;
-        color: #cbd5e1;
-        margin-bottom: 0.45rem;
+        box-shadow: 0 8px 20px rgba(0, 242, 254, 0.4) !important;
     }
     
     .badge-approved {
-        background: rgba(16, 185, 129, 0.15);
-        border: 1.5px solid #10b981;
-        color: #6ee7b7;
-        padding: 0.65rem 1.3rem;
-        border-radius: 30px;
-        font-size: 0.95rem;
+        background: rgba(46, 204, 113, 0.15);
+        border: 1.5px solid #2ECC71;
+        color: #A9DFBF;
+        padding: 0.55rem 1.2rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
         font-weight: 800;
         display: inline-block;
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
     }
     
     .badge-declined {
-        background: rgba(239, 68, 68, 0.15);
-        border: 1.5px solid #ef4444;
-        color: #fca5a5;
-        padding: 0.65rem 1.3rem;
-        border-radius: 30px;
-        font-size: 0.95rem;
+        background: rgba(231, 76, 60, 0.15);
+        border: 1.5px solid #E74C3C;
+        color: #F5B7B1;
+        padding: 0.55rem 1.2rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
         font-weight: 800;
         display: inline-block;
-        box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+        box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -559,463 +401,386 @@ eda_summary = load_eda_summary()
 leaderboard_data = load_model_leaderboard()
 city_locality_map = df_data.groupby("City")["Locality"].unique().apply(list).to_dict()
 
-# Initialize Chat Session State
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = [
-        {"role": "user", "text": "Analyze ROI for 78 Park Ave vs. 12 Sky Tower"},
-        {"role": "sophia", "text": "Processing Analysis for 78 Park Ave and 12 Sky Tower. Viewing dynamic comparison below..."}
-    ]
-
-# Top Master Sophia Executive Bar
-st.markdown(f"""
-<div class="sophia-top-bar">
-    <div class="brand-logo-area">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <path d="M16 2L4 8L16 14L28 8L16 2Z" fill="url(#gold-g)" stroke="#F5C518" stroke-width="1.5"/>
-            <path d="M4 14L16 20L28 14" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
-            <path d="M4 20L16 26L28 20" stroke="#F5C518" stroke-width="2" stroke-linecap="round"/>
-            <defs>
-                <linearGradient id="gold-g" x1="0" y1="0" x2="32" y2="32">
-                    <stop stop-color="#FFDF00"/>
-                    <stop offset="0.5" stop-color="#D4AF37"/>
-                    <stop offset="1" stop-color="#805b10"/>
-                </linearGradient>
-            </defs>
-        </svg>
-        <div>
-            <div class="brand-title">SOPHIA</div>
-            <div class="brand-sub">AI REAL ESTATE ADVISOR</div>
-        </div>
-    </div>
-    <div class="user-profile-badge">
-        <div class="bell-icon-wrap">
-            🔔
-            <span class="bell-dot"></span>
-        </div>
-        <div class="user-avatar-circle">
-            {'<img src="data:image/png;base64,' + alex_avatar_b64 + '" style="width: 100%; height: 100%; object-fit: cover;" />' if alex_avatar_b64 else '👑'}
-        </div>
-        <div class="user-info-text">
-            <div class="user-name">Alex Morgan</div>
-            <div class="user-portfolio">₹32.5 Cr Portfolio</div>
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# Main Navigation Tabs (styled like the screenshot navbar pills)
-tab_dashboard, tab_analytics, tab_properties, tab_portfolio, tab_support = st.tabs([
-    "Dashboard",
-    "Analytics",
-    "Properties",
-    "Portfolio",
-    "Support & MLOps"
+# Top Navigation Tabs styled in High-Tech Cyberpunk theme
+tab_hologram, tab_analytics, tab_properties, tab_portfolio, tab_support = st.tabs([
+    "[ 3D GEOSPATIAL TERMINAL ]",
+    "[ 20-POINT MARKET INTELLIGENCE ]",
+    "[ DEAL FINDER & SCREENER ]",
+    "[ PROPERTY COMPARISON ]",
+    "[ MLOPS & MODEL REGISTRY ]"
 ])
 
 # ==============================================================================
-# TAB 1: DASHBOARD (EXACT SOPHIA HERO + PORTFOLIO PERFORMANCE + VALUATION ENGINE)
+# TAB 1: 3D HOLOGRAPHIC GEOSPATIAL TERMINAL (EXACT REPLICATION OF UPLOADED UI)
 # ==============================================================================
-with tab_dashboard:
+with tab_hologram:
+    # 2-Column Master Layout: Left Main 3D Stage (2.1fr) | Right Financial Sidebar (1fr)
+    col_main_stage, col_right_stack = st.columns([2.05, 1])
+
     # --------------------------------------------------------------------------
-    # 1. SOPHIA HERO INTERACTIVE STAGE
+    # LEFT & CENTER REGION: 3D HOLOGRAPHIC CITY STAGE
     # --------------------------------------------------------------------------
-    st.markdown("""
-    <div class="sophia-hero-stage">
-        <div class="stage-top-meta">
-            <div class="active-pill">
-                <span class="active-green-dot"></span> SOPHIA - ACTIVE
+    with col_main_stage:
+        # Top Row: [ RENTAL PRICES ] (with Demand & Prices) | [ LOCATION ] (with 3D building thumbnail)
+        r_top1, r_top2, r_top3 = st.columns([1.4, 1.2, 0.9])
+
+        with r_top1:
+            st.markdown("""
+            <div class="cyber-card">
+                <div class="bracket-header">
+                    <span class="bracket-title">[ <span>RENTAL PRICES</span> ]</span>
+                    <span class="bracket-link">Details &gt;</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div class="rental-sub-box">
+                        <div class="rental-icon-circle">👥</div>
+                        <div>
+                            <div style="font-size: 0.68rem; color: #8A99AD; font-weight: 600;">Demand</div>
+                            <div class="rental-val-big">46% <span class="green-badge-up">↑ 5.34%</span></div>
+                        </div>
+                    </div>
+                    <div class="rental-sub-box">
+                        <div class="rental-icon-circle">💳</div>
+                        <div>
+                            <div style="font-size: 0.68rem; color: #8A99AD; font-weight: 600;">Prices</div>
+                            <div class="rental-val-big">$1,950 <span class="green-badge-up">↑ 5.34%</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="dots-menu">•••</div>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    hero_col_wave, hero_col_portrait, hero_col_chat = st.columns([1.1, 1, 1.5])
-    
-    with hero_col_wave:
-        # Golden Sound Waveform (Glowing Real-Time Neural Reasoning Wave)
+            """, unsafe_allow_html=True)
+
+        with r_top2:
+            st.markdown("""
+            <div class="cyber-card">
+                <div class="bracket-header">
+                    <span class="bracket-title">[ <span>LOCATION</span> ]</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 6px;">
+                    <div style="font-size: 1.3rem; color: #4FACFE; margin-top: -2px;">📍</div>
+                    <div>
+                        <div style="font-size: 0.72rem; color: #8A99AD;">Street <span style="color: #FFFFFF; font-weight: 700; margin-left: 8px;">Rosewood Road/987</span></div>
+                        <div style="font-size: 0.72rem; color: #8A99AD; margin-top: 4px;">Available Properties <span style="color: #00F2FE; font-weight: 800; margin-left: 8px;">1,224</span></div>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+        with r_top3:
+            # 3D Building Perspective Thumbnail
+            if thumb_3d_b64:
+                st.markdown(f"""
+                <div class="cyber-card" style="padding: 0; overflow: hidden; height: 110px;">
+                    <img src="data:image/png;base64,{thumb_3d_b64}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown("""
+                <div class="cyber-card" style="height: 110px; display: flex; align-items: center; justify-content: center;">
+                    🏢 3D Wireframe
+                </div>
+                """, unsafe_allow_html=True)
+
+        # Amenity Filter Bar
         st.markdown("""
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; text-align: center;">
-            <svg width="220" height="75" viewBox="0 0 220 75" fill="none">
-                <defs>
-                    <filter id="gold-glow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="3.5" result="blur" />
-                        <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
-                <path d="M 5,38 Q 20,38 32,38 T 52,36 T 70,44 T 84,14 T 94,62 T 104,8 T 114,64 T 124,24 T 138,44 T 158,38 T 188,38 T 215,38" 
-                      stroke="#F5C518" stroke-width="2.8" fill="none" stroke-linecap="round" filter="url(#gold-glow)"/>
-            </svg>
-            <div style="font-size: 0.72rem; color: #8E9DB2; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 8px;">
-                NEURAL SPEECH & VALUE ENGINE
-            </div>
-            <div style="font-size: 0.68rem; color: #22c55e; font-weight: 600; margin-top: 2px;">
-                HistGradientBoosting (95.2% AUC) Active
-            </div>
+        <div class="filter-pills-bar">
+            <span class="amenity-pill p-police">👮 Police</span>
+            <span class="amenity-pill p-school">🎓 School</span>
+            <span class="amenity-pill p-hospital">🏥 Hospital</span>
+            <span class="amenity-pill p-work">💼 Work</span>
+            <span class="amenity-pill p-restaurant">🍴 Restaurant</span>
+            <span class="amenity-pill p-hotel">🏨 Hotel</span>
+            <span class="amenity-pill p-market">🛒 Market</span>
         </div>
         """, unsafe_allow_html=True)
-        
-    with hero_col_portrait:
-        # Centered Sophia Portrait with Golden Border
-        if sophia_b64:
+
+        # Central 3D Holographic Map Viewport
+        if city_map_b64:
             st.markdown(f"""
-            <div style="display: flex; justify-content: center; align-items: center; height: 180px;">
-                <div class="portrait-wrap">
-                    <img src="data:image/png;base64,{sophia_b64}" alt="Sophia AI Advisor" />
-                </div>
+            <div class="map-viewport">
+                <img src="data:image/png;base64,{city_map_b64}" alt="3D Holographic Real Estate City Map" />
             </div>
             """, unsafe_allow_html=True)
         else:
+            st.info("3D Holographic Map Active")
+
+        # Bottom Row: [ PROPERTY DETAILS ] & [ DEMOGRAPHIC INSIGHTS ]
+        b_col1, b_col2 = st.columns([1.1, 1.2])
+
+        with b_col1:
             st.markdown("""
-            <div style="display: flex; justify-content: center; align-items: center; height: 180px;">
-                <div class="portrait-wrap" style="display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-                    👩‍💼
+            <div class="cyber-card">
+                <div class="bracket-header">
+                    <span class="bracket-title">[ <span>PROPERTY DETAILS</span> ]</span>
+                    <span class="bracket-link">View more &gt;</span>
+                </div>
+                <div style="font-size: 0.72rem; color: #8A99AD; margin-bottom: 2px;">
+                    [ <span style="color: #FFFFFF; font-weight: 700;">TYPE</span> ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <span style="color: #FFFFFF; font-weight: 700;">ADDRESS</span> ]
+                </div>
+                <div style="display: flex; gap: 24px; font-size: 0.78rem; font-weight: 600; color: #cbd5e1; margin-bottom: 8px;">
+                    <div>Condo - 15 Units</div>
+                    <div>17-11 Linden St, Ridgewood, NY 11385</div>
+                </div>
+                <div style="font-size: 0.72rem; color: #8A99AD; margin-bottom: 2px;">[ <span style="color: #FFFFFF; font-weight: 700;">DESCRIPTION</span> ]</div>
+                <div style="font-size: 0.74rem; color: #94a3b8; line-height: 1.35; margin-bottom: 12px;">
+                    The Multifamily Firm is pleased to present the Bay Street Villas, a vintage 15-unit condo in prime metropolitan zone.
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.68rem; color: #8A99AD; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;">
+                    <div>📅 Date Added<br><span style="color: #FFFFFF; font-weight: 700;">Sep 18, 2026</span></div>
+                    <div>🛒 Days on Market<br><span style="color: #FFFFFF; font-weight: 700;">18 days</span></div>
+                    <div>🔄 Last Updated<br><span style="color: #FFFFFF; font-weight: 700;">2 days ago</span></div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
-            
-    with hero_col_chat:
-        # Conversational Chat Area
-        latest_user = st.session_state.chat_history[-2]["text"] if len(st.session_state.chat_history) >= 2 else "Analyze ROI for 78 Park Ave vs. 12 Sky Tower"
-        latest_sophia = st.session_state.chat_history[-1]["text"] if len(st.session_state.chat_history) >= 1 else "Processing Analysis. Viewing dynamic comparison below..."
-        
-        st.markdown(f"""
-        <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-            <div class="chat-bubble-user">
-                {latest_user}
-            </div>
-            <div class="chat-bubble-sophia">
-                <span class="sophia-chat-icon">✨</span>
-                <div>{latest_sophia}</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Interactive chat query input
-        chat_q = st.text_input("Ask Sophia", placeholder="Type a message or property question...", label_visibility="collapsed", key="sophia_chat_query")
-        if chat_q:
-            # Generate intelligent response
-            q_lower = chat_q.lower()
-            if "78 park" in q_lower or "sky tower" in q_lower or "roi" in q_lower:
-                ans = "Comparing 78 Park Ave (14.2% Net IRR) vs 12 Sky Tower (12.8% Net IRR). Park Ave benefits from +260 bps higher appreciation and superior infra score."
-            elif "bangalore" in q_lower or "bengaluru" in q_lower:
-                ans = "Bengaluru's Whitefield and Outer Ring Road tech hubs show projected 5Y CAGR of 11.4% with median gross yields at 4.6%."
-            elif "mumbai" in q_lower:
-                ans = "Mumbai leads in capital stability (₹248L median price). High-velocity micro-markets like Bandra West and Powai are posting 9.8% 5Y CAGR."
-            elif "yield" in q_lower:
-                ans = "Top gross rental yields in Indian metros are currently concentrated in suburban IT corridors (4.2% - 5.8%) versus luxury coastal enclaves (2.1% - 2.8%)."
-            else:
-                ans = f"Analyzing '{chat_q}' across 12,000 verified listings and ML valuation trajectories. Reviewing macro trends below..."
-                
-            st.session_state.chat_history.append({"role": "user", "text": chat_q})
-            st.session_state.chat_history.append({"role": "sophia", "text": ans})
-            st.rerun()
 
-    st.markdown("</div>", unsafe_allow_html=True)
-    
-    # --------------------------------------------------------------------------
-    # 2. PORTFOLIO PERFORMANCE SECTION (EXACT REFERENCE SCREENSHOT REPLICATION)
-    # --------------------------------------------------------------------------
-    st.markdown("""
-    <div class="portfolio-perf-container">
-        <div class="perf-header-title">
-            PORTFOLIO PERFORMANCE
-            <span class="dots-menu" style="float: right;">•••</span>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    # ROW 1 OF 2: Total ROI Overview | Property Appreciation | Rental Yield
-    r1_col1, r1_col2, r1_col3 = st.columns(3)
-    
-    with r1_col1:
-        st.markdown("""
-        <div class="perf-card">
-            <div>
-                <div class="card-top-row">
-                    <span class="card-title-text">TOTAL ROI OVERVIEW</span>
-                    <div class="time-pills">
-                        <span class="time-pill">1Y</span>
-                        <span class="time-pill">3Y</span>
-                        <span class="time-pill active">5Y</span>
+        with b_col2:
+            st.markdown("""
+            <div class="cyber-card">
+                <div class="bracket-header">
+                    <span class="bracket-title">[ <span>DEMOGRAPHIC INSIGHTS</span> ]</span>
+                    <span style="font-size: 0.75rem; color: #8A99AD;">&lt; &nbsp; &gt;</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <div>
+                        <div style="font-size: 0.68rem; color: #8A99AD;">Population</div>
+                        <div style="font-size: 1.25rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">
+                            273k <span style="color: #00F2FE; font-size: 1rem;">↑</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <span style="font-size: 0.65rem; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px; color: #8A99AD;">1 Mile</span>
+                        <span style="font-size: 0.65rem; background: #222C54; padding: 3px 8px; border-radius: 4px; color: #FFFFFF; font-weight: 700;">3 Miles</span>
+                        <span style="font-size: 0.65rem; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px; color: #8A99AD;">5 Miles</span>
                     </div>
                 </div>
-                <div class="metric-hero-val" style="color: #F5C518;">18.5% Growth</div>
+            """, unsafe_allow_html=True)
+
+            # Glowing Cyan Population Trend Line Chart
+            fig_demo = go.Figure()
+            fig_demo.add_trace(go.Scatter(
+                x=["2017", "2018", "2019", "2020", "2021", "2022"],
+                y=[175, 210, 230, 248, 265, 273],
+                mode="lines+markers",
+                line=dict(color="#00F2FE", width=2.5, shape="spline"),
+                marker=dict(size=5, color="#FFFFFF", line=dict(color="#00F2FE", width=1.5)),
+                fill="tozeroy",
+                fillcolor="rgba(0, 242, 254, 0.06)",
+                showlegend=False
+            ))
+            fig_demo.update_layout(
+                template="plotly_dark",
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)",
+                height=130,
+                margin=dict(l=10, r=10, t=5, b=20),
+                xaxis=dict(showgrid=False, tickfont=dict(size=9, color="#70809A")),
+                yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)", tickfont=dict(size=8, color="#70809A"), range=[140, 300])
+            )
+            st.plotly_chart(fig_demo, use_container_width=True, key="fig_demo_stage")
+
+            render_graph_insights(
+                insight_text="Demographic population within the 3-mile catchment expanded from 175k to 273k (+56% growth) driven by rapid commercial transit expansion.",
+                recommendation_text="Acquire multi-unit residential assets in high-inflow catchments to capture consistent 5-7% annual lease rate escalations."
+            )
+            st.markdown("</div>", unsafe_allow_html=True)
+
+
+    # --------------------------------------------------------------------------
+    # RIGHT COLUMN: FINANCIAL & ANALYTICS SIDEBAR STACK
+    # --------------------------------------------------------------------------
+    with col_right_stack:
+        # Card 1: [ PRICE STATISTICS ]
+        st.markdown("""
+        <div class="cyber-card">
+            <div class="bracket-header">
+                <span class="bracket-title">[ <span>PRICE STATISTICS</span> ]</span>
+                <span class="bracket-link">View more &gt;</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px;">
+                <div>
+                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">$3.5M</div>
+                    <div style="font-size: 0.65rem; color: #8A99AD;">Max Price</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">$68,000</div>
+                    <div style="font-size: 0.65rem; color: #8A99AD;">Min Price</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #4FACFE;">$370,000</div>
+                    <div style="font-size: 0.65rem; color: #8A99AD;">Avg. property price</div>
+                </div>
             </div>
         """, unsafe_allow_html=True)
-        
-        # Gold Spline Area Chart
-        fig_roi_overview = go.Figure()
-        fig_roi_overview.add_trace(go.Scatter(
-            x=["2021-2022", "2022", "2023", "2024", "2025-2026"],
-            y=[0, 6.5, 18.5, 12.0, 18.5],
-            mode="lines+markers+text",
-            text=["0%", "6.5%", "+18.5%", "-18.5%", "+18.5%"],
-            textposition="top center",
-            line=dict(color="#F5C518", width=3, shape="spline"),
-            marker=dict(size=7, color="#F5C518", line=dict(color="#FFFFFF", width=1.5)),
-            fill="tozeroy",
-            fillcolor="rgba(245, 197, 24, 0.09)",
+
+        # High-Tech Vertical Histogram Bars
+        fig_price_bars = go.Figure()
+        bars_data = [8, 14, 22, 38, 28, 52, 35, 26, 18, 20, 14, 30, 25, 12, 16, 22, 18, 14, 10, 7, 5, 3]
+        fig_price_bars.add_trace(go.Bar(
+            x=list(range(len(bars_data))),
+            y=bars_data,
+            marker=dict(color="#4A69BD", line=dict(color="rgba(0, 242, 254, 0.4)", width=0.5)),
             showlegend=False
         ))
-        fig_roi_overview.update_layout(
+        fig_price_bars.update_layout(
+            template="plotly_dark",
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            height=100,
+            margin=dict(l=2, r=2, t=5, b=5),
+            xaxis=dict(showgrid=False, showticklabels=False),
+            yaxis=dict(showgrid=False, showticklabels=False)
+        )
+        st.plotly_chart(fig_price_bars, use_container_width=True, key="fig_price_bars_stage")
+
+        st.markdown("""
+        <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: #8A99AD; margin-top: -4px; margin-bottom: 8px;">
+            <div>$68k</div>
+            <div>$3.5M</div>
+        </div>
+        <div style="font-size: 0.65rem; font-weight: 700; color: #8A99AD; letter-spacing: 0.8px; margin-bottom: 4px;">[ EXPAND YOUR SEARCH ]</div>
+        <div>
+            <span class="chip-search">East Bronx</span>
+            <span class="chip-search">Harlem</span>
+            <span class="chip-search">Parkchester</span>
+            <span class="chip-search">Wakefield</span>
+            <span class="chip-search">Brooklyn</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+        render_graph_insights(
+            insight_text="Unit pricing exhibits high concentration around the $280k - $420k median core, with luxury trophy listings scaling up to $3.5M.",
+            recommendation_text="Acquire within the $300k - $400k high-liquidity volume cluster to minimize days-on-market during portfolio divestment."
+        )
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Card 2: [ VALUATION CALCULATOR ]
+        st.markdown("""
+        <div class="cyber-card">
+            <div class="bracket-header">
+                <span class="bracket-title">[ <span>VALUATION CALCULATOR</span> ]</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; font-size: 0.72rem; margin-bottom: 8px;">
+                <div>
+                    <span style="color: #8A99AD;">Term</span><br>
+                    <span style="color: #FFFFFF; font-weight: 700;">15 years</span>
+                </div>
+                <div>
+                    <span style="color: #8A99AD;">Mortgage Type</span><br>
+                    <span style="color: #FFFFFF; font-weight: 700;">Fixed</span>
+                </div>
+                <div>
+                    <span style="color: #8A99AD;">Interest rate</span><br>
+                    <span style="color: #FFFFFF; font-weight: 700;">8.5%</span>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+
+        # Interactive Down Payment Slider
+        st.markdown("<div style='font-size: 0.68rem; color: #8A99AD; font-weight: 600;'>Down Payment</div>", unsafe_allow_html=True)
+        dp_slider = st.slider("Down Payment Slider", min_value=10, max_value=50, value=25, step=5, label_visibility="collapsed", key="cyber_dp_slider")
+
+        calc_property_val = 370000.0
+        calc_dp_amount = (calc_property_val * dp_slider) / 100.0
+        calc_loan = calc_property_val - calc_dp_amount
+        r_monthly = (0.085 / 12)
+        n_months = 15 * 12
+        calc_emi = (calc_loan * r_monthly * ((1 + r_monthly) ** n_months)) / (((1 + r_monthly) ** n_months) - 1)
+
+        st.markdown(f"""
+        <div style="display: flex; justify-content: space-between; margin-top: 4px; margin-bottom: 10px;">
+            <div>
+                <div style="font-size: 0.65rem; color: #8A99AD;">Down Payment ({dp_slider}%)</div>
+                <div style="font-size: 1.15rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">${calc_dp_amount:,.0f}</div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 0.65rem; color: #8A99AD;">Estimated pr. month:</div>
+                <div style="font-size: 1.15rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #00F2FE;">${calc_emi:,.2f}</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        btn_c1, btn_c2 = st.columns(2)
+        with btn_c1:
+            st.button("Request a tour", use_container_width=True, key="btn_tour")
+        with btn_c2:
+            st.button("Contact agent", use_container_width=True, key="btn_agent")
+
+        st.markdown("""
+        <div style="text-align: center; font-size: 0.65rem; color: #70809A; margin-top: 6px;">
+            as early as today at 11:00 am
+        </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Card 3: [ DISTRIBUTION BY CATEGORY ]
+        st.markdown("""
+        <div class="cyber-card">
+            <div class="bracket-header">
+                <span class="bracket-title">[ <span>DISTRIBUTION BY CATEGORY</span> ]</span>
+            </div>
+        """, unsafe_allow_html=True)
+
+        # Multi-Segment Glowing Neon Donut Chart
+        fig_donut_cat = go.Figure(data=[go.Pie(
+            labels=["Apartments", "Townhouses", "Multi family", "Penthouses"],
+            values=[47, 28, 17, 8],
+            hole=0.72,
+            marker=dict(colors=["#00F2FE", "#4FACFE", "#9B51E0", "#F2C94C"]),
+            textinfo="none",
+            hoverinfo="label+percent"
+        )])
+        fig_donut_cat.update_layout(
             template="plotly_dark",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
             height=160,
-            margin=dict(l=10, r=10, t=20, b=20),
-            xaxis=dict(showgrid=False, tickfont=dict(size=10, color="#8E9DB2")),
-            yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.06)", tickfont=dict(size=9, color="#8E9DB2"))
-        )
-        st.plotly_chart(fig_roi_overview, use_container_width=True, key="fig_roi_perf")
-        
-        render_graph_insights(
-            insight_text="Portfolio achieved an annualized appreciation of 18.5%, significantly outperforming the national residential hurdle of 8.2% by +1030 bps.",
-            recommendation_text="Lock in profits on mature holdings older than 5 years and rotate capital into transit-oriented tech corridors (e.g. Whitefield, Gachibowli)."
-        )
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-    with r1_col2:
-        st.markdown("""
-        <div class="perf-card">
-            <div>
-                <div class="card-top-row">
-                    <span class="card-title-text">PROPERTY APPRECIATION</span>
-                </div>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        # Dual Bar Chart: Park Ave (Gold) vs Sky Tower (White)
-        fig_apprec = go.Figure()
-        fig_apprec.add_trace(go.Bar(
-            x=["Park Ave", "Sky Tower"],
-            y=[12.4, 9.8],
-            text=["+12.4%", "+9.8%"],
-            textposition="outside",
-            textfont=dict(size=12, color=["#F5C518", "#FFFFFF"], family="JetBrains Mono"),
-            marker=dict(color=["#F5C518", "#FFFFFF"], line=dict(color="rgba(255,255,255,0.2)", width=1)),
-            width=[0.42, 0.42],
-            showlegend=False
-        ))
-        fig_apprec.update_layout(
-            template="plotly_dark",
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            height=185,
-            margin=dict(l=10, r=10, t=30, b=20),
-            yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.06)", range=[0, 16], tickfont=dict(size=9, color="#8E9DB2")),
-            xaxis=dict(showgrid=False, tickfont=dict(size=11, color="#CBD5E1"))
-        )
-        st.plotly_chart(fig_apprec, use_container_width=True, key="fig_apprec_perf")
-        
-        render_graph_insights(
-            insight_text="Park Ave exhibits a +260 bps appreciation edge over Sky Tower driven by younger construction age (3 yrs vs 9 yrs) and higher civic infra score (84 vs 62).",
-            recommendation_text="Prioritize Grade-A developers with possession under 4 years to capture the maximum capital compounding slope."
-        )
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-    with r1_col3:
-        st.markdown("""
-        <div class="perf-card">
-            <div>
-                <div class="card-top-row">
-                    <span class="card-title-text">RENTAL YIELD</span>
-                    <div class="time-pills">
-                        <span class="time-pill">1Y</span>
-                        <span class="time-pill">3Y</span>
-                        <span class="time-pill active">5Y</span>
-                    </div>
-                </div>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        # Dual Donut Gauge Rings: 6.1% (Gold) & 5.7% (White)
-        fig_yield = make_subplots(rows=1, cols=2, specs=[[{"type": "domain"}, {"type": "domain"}]])
-        fig_yield.add_trace(go.Pie(
-            values=[6.1, 93.9],
-            hole=0.72,
-            marker=dict(colors=["#F5C518", "rgba(255,255,255,0.07)"]),
-            textinfo="none",
-            hoverinfo="none",
-            showlegend=False
-        ), 1, 1)
-        fig_yield.add_trace(go.Pie(
-            values=[5.7, 94.3],
-            hole=0.72,
-            marker=dict(colors=["#FFFFFF", "rgba(255,255,255,0.07)"]),
-            textinfo="none",
-            hoverinfo="none",
-            showlegend=False
-        ), 1, 2)
-        fig_yield.update_layout(
-            template="plotly_dark",
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            height=150,
-            margin=dict(l=5, r=5, t=10, b=10),
+            margin=dict(l=10, r=10, t=10, b=10),
+            showlegend=False,
             annotations=[
-                dict(text="<b>6.1%</b>", x=0.20, y=0.5, font_size=15, font_color="#F5C518", showarrow=False),
-                dict(text="<b>5.7%</b>", x=0.80, y=0.5, font_size=15, font_color="#FFFFFF", showarrow=False)
+                dict(text="<b>1,224</b><br><span style='font-size:9px;'>UNITS</span>", x=0.5, y=0.5, font_size=13, font_color="#FFFFFF", showarrow=False)
             ]
         )
-        st.plotly_chart(fig_yield, use_container_width=True, key="fig_yield_perf")
+        st.plotly_chart(fig_donut_cat, use_container_width=True, key="fig_donut_cat_stage")
+
         st.markdown("""
-        <div style="display: flex; justify-content: space-around; font-size: 0.74rem; font-weight: 700; color: #cbd5e1; margin-top: -6px; margin-bottom: 6px;">
-            <div><span style="color: #F5C518;">■</span> Park Ave</div>
-            <div><span style="color: #FFFFFF;">■</span> Sky Tower</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.72rem; margin-top: 4px;">
+            <div>
+                <span style="color: #00F2FE; font-weight: 700;">● Apartments: 47%</span><br>
+                <span style="color: #8A99AD;">Units: 672</span>
+            </div>
+            <div>
+                <span style="color: #4FACFE; font-weight: 700;">● Townhouses: 28%</span><br>
+                <span style="color: #8A99AD;">Units: 194</span>
+            </div>
+            <div>
+                <span style="color: #9B51E0; font-weight: 700;">● Multi family: 17%</span><br>
+                <span style="color: #8A99AD;">Units: 105</span>
+            </div>
+            <div>
+                <span style="color: #F2C94C; font-weight: 700;">● Penthouses: 8%</span><br>
+                <span style="color: #8A99AD;">Units: 27</span>
+            </div>
         </div>
         """, unsafe_allow_html=True)
-        
+
         render_graph_insights(
-            insight_text="Both properties surpass the national metro median rental yield (4.2%). Park Ave produces ₹1.12L/month net rental cash flow with 96% occupancy history.",
-            recommendation_text="Maintain multi-year corporate leases with 5% annual contractual escalations to safeguard inflation-adjusted cash distributions."
+            insight_text="Standard multi-family Apartments dominate inventory (47%), ensuring deep tenant demand liquidity, while Penthouses represent an exclusive 8% scarcity niche.",
+            recommendation_text="Maintain a core 70/30 portfolio allocation: 70% in high-absorption Apartments for steady cash yield, and 30% in Townhouses/Penthouses for long-term equity growth."
         )
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # ROW 2 OF 2: ROI Comparison | Market Trends | Investment Summary
-    r2_col1, r2_col2, r2_col3 = st.columns(3)
-    
-    with r2_col1:
-        st.markdown("""
-        <div class="perf-card">
-            <div>
-                <div class="card-top-row">
-                    <span class="card-title-text">ROI COMPARISON</span>
-                    <div class="time-pills">
-                        <span class="time-pill">1Y</span>
-                        <span class="time-pill">3Y</span>
-                        <span class="time-pill active">5Y</span>
-                    </div>
-                </div>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        # Paired Comparison Bar Chart
-        fig_roi_comp = go.Figure()
-        fig_roi_comp.add_trace(go.Bar(
-            x=["78 Park Ave", "12 Sky Tower"],
-            y=[14.2, 12.8],
-            text=["14.2%", "12.8%"],
-            textposition="outside",
-            textfont=dict(size=12, color=["#F5C518", "#38bdf8"], family="JetBrains Mono"),
-            marker=dict(color=["#F5C518", "#0284c7"]),
-            width=[0.42, 0.42],
-            showlegend=False
-        ))
-        fig_roi_comp.update_layout(
-            template="plotly_dark",
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            height=185,
-            margin=dict(l=10, r=10, t=30, b=20),
-            yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.06)", range=[0, 18], tickfont=dict(size=9, color="#8E9DB2")),
-            xaxis=dict(showgrid=False, tickfont=dict(size=11, color="#CBD5E1"))
-        )
-        st.plotly_chart(fig_roi_comp, use_container_width=True, key="fig_roi_comp_perf")
-        
-        render_graph_insights(
-            insight_text="Net Internal Rate of Return (IRR) for 78 Park Ave stands at 14.2% vs 12.8% for 12 Sky Tower after adjusting for maintenance and municipal tax drag.",
-            recommendation_text="Select 78 Park Ave for faster debt amortization and superior cash-on-cash return over a 5-year holding horizon."
-        )
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-    with r2_col2:
-        st.markdown("""
-        <div class="perf-card">
-            <div>
-                <div class="card-top-row">
-                    <span class="card-title-text">MARKET TRENDS</span>
-                    <div class="time-pills">
-                        <span class="time-pill">1Y</span>
-                        <span class="time-pill">3Y</span>
-                        <span class="time-pill active">5Y</span>
-                    </div>
-                </div>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        # Dual Line Trend Chart: Gold (Micro-Market) vs White (City Benchmark)
-        fig_trends = go.Figure()
-        months = ["Jan", "May", "Sep", "Nov", "Dec"]
-        fig_trends.add_trace(go.Scatter(
-            x=months,
-            y=[220, 260, 310, 280, 340],
-            mode="lines+markers",
-            name="Micro-Market",
-            line=dict(color="#F5C518", width=2.5, shape="spline"),
-            marker=dict(size=6, color="#F5C518")
-        ))
-        fig_trends.add_trace(go.Scatter(
-            x=months,
-            y=[180, 210, 270, 240, 290],
-            mode="lines+markers",
-            name="City Benchmark",
-            line=dict(color="#FFFFFF", width=2, shape="spline"),
-            marker=dict(size=5, color="#FFFFFF")
-        ))
-        fig_trends.update_layout(
-            template="plotly_dark",
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            height=185,
-            margin=dict(l=10, r=10, t=15, b=20),
-            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1, font=dict(size=9, color="#CBD5E1")),
-            xaxis=dict(showgrid=False, tickfont=dict(size=10, color="#8E9DB2")),
-            yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.06)", tickfont=dict(size=9, color="#8E9DB2"))
-        )
-        st.plotly_chart(fig_trends, use_container_width=True, key="fig_market_trends_perf")
-        
-        render_graph_insights(
-            insight_text="Micro-market PSF trajectory demonstrates resilient upward momentum (+14.8% YoY) despite quarterly macroeconomic volatility in broader indices.",
-            recommendation_text="Deploy capital during pre-monsoon Q2 consolidation troughs when builder festive incentives and stamp duty waivers peak."
-        )
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-    with r2_col3:
-        st.markdown("""
-        <div class="perf-card">
-            <div>
-                <div class="card-top-row">
-                    <span class="card-title-text">INVESTMENT SUMMARY</span>
-                    <span class="dots-menu">•••</span>
-                </div>
-            </div>
-            <div>
-                <div class="summary-metric-box">
-                    <div class="summary-val" style="color: #F5C518;">18.5%</div>
-                    <div class="summary-lbl">Total ROI</div>
-                </div>
-                <div class="summary-metric-box">
-                    <div class="summary-val" style="color: #F5C518;">$3.2M</div>
-                    <div class="summary-lbl">Portfolio Value</div>
-                </div>
-                <div class="summary-metric-box">
-                    <div class="summary-val" style="color: #22c55e;">+11.2%</div>
-                    <div class="summary-lbl">Equity Growth</div>
-                </div>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        render_graph_insights(
-            insight_text="Portfolio risk grade is AAA with a conservative Loan-to-Value (LTV) ratio of 42% and 1.85x debt-service coverage ratio (DSCR).",
-            recommendation_text="Refinance high-equity properties at current institutional 8.35% home loan rates to fund suburban land parcel acquisitions."
-        )
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True) # End Portfolio Perf Container
 
     # --------------------------------------------------------------------------
-    # 3. INTERACTIVE PREDICTIVE VALUATION & INVESTMENT ADVISOR TERMINAL
+    # FULL INTEGRATED ML ENGINE & PREDICTION FORM
     # --------------------------------------------------------------------------
     st.markdown("""
-    <div style="border-top: 1px solid rgba(212, 175, 55, 0.25); padding-top: 1.5rem; margin-top: 1.5rem; margin-bottom: 1rem;">
-        <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">🔮 Property Valuation & 5-Year Capital Forecasting Engine</h3>
-        <p style="color: #8E9DB2; font-size: 0.88rem;">Configure any residential property to evaluate investment grade, 5-year capital appreciation, rental yield, and risk dynamics using our trained Scikit-Learn models.</p>
+    <div style="border-top: 1px solid rgba(0, 242, 254, 0.22); padding-top: 1.5rem; margin-top: 1.5rem; margin-bottom: 1rem;">
+        <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">🔮 Machine Learning Valuation & 5-Year Capital Forecast</h3>
+        <p style="color: #8A99AD; font-size: 0.88rem;">Configure any prospective property to compute 5-year capital appreciation, risk grade, and cash flow dynamics using the trained HistGradientBoostingClassifier & RidgeRegressor.</p>
     </div>
     """, unsafe_allow_html=True)
-    
-    with st.form("sophia_valuation_form"):
+
+    with st.form("cyber_prop_valuation_form"):
         col1, col2, col3 = st.columns(3)
         with col1:
             st.markdown("##### 📍 Location & Configuration")
@@ -1030,7 +795,7 @@ with tab_dashboard:
             st.markdown("##### 💰 Pricing & Building Specs")
             price_lakhs = st.number_input("Listing Price (₹ in Lakhs)", min_value=15.0, max_value=2500.0, value=185.0, step=2.5)
             calc_psf = round((price_lakhs * 100000.0) / max(size_sqft, 1), 0)
-            st.markdown(f"<div style='font-size: 0.82rem; color: #F5C518; font-weight: 600; padding: 4px 0;'>Computed PSF: ₹{calc_psf:,.0f} / sqft</div>", unsafe_allow_html=True)
+            st.markdown(f"<div style='font-size: 0.82rem; color: #00F2FE; font-weight: 600; padding: 4px 0;'>Computed PSF: ₹{calc_psf:,.0f} / sqft</div>", unsafe_allow_html=True)
             
             year_built = st.number_input("Year of Construction", min_value=1995, max_value=2026, value=2022)
             furnished = st.selectbox("Furnished Status", ["Unfurnished", "Semi-Furnished", "Fully Furnished"], index=1)
@@ -1095,10 +860,10 @@ with tab_dashboard:
             st.markdown('<div class="badge-declined">⚠️ HIGH RISK / NOT RECOMMENDED</div>', unsafe_allow_html=True)
             
     with res_grade_col:
-        st.markdown(f"**Investment Rating**<br><h3 style='color: #F5C518; margin-top:2px;'>{prediction['rating_grade']}</h3>", unsafe_allow_html=True)
+        st.markdown(f"**Investment Rating**<br><h3 style='color: #F2C94C; margin-top:2px;'>{prediction['rating_grade']}</h3>", unsafe_allow_html=True)
         
     with res_conf_col:
-        st.markdown(f"**Model Confidence**<br><h3 style='color: #38bdf8; margin-top:2px;'>{prediction['confidence_score']}%</h3>", unsafe_allow_html=True)
+        st.markdown(f"**Model Confidence**<br><h3 style='color: #00F2FE; margin-top:2px;'>{prediction['confidence_score']}%</h3>", unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -1106,34 +871,34 @@ with tab_dashboard:
     k1, k2, k3, k4 = st.columns(4)
     with k1:
         st.markdown(f"""
-        <div class="summary-metric-box">
-            <div class="summary-val" style="color: #38bdf8;">₹{prediction['predicted_future_price_5y']:,.2f} L</div>
-            <div class="summary-lbl">5Y Forecasted Price</div>
-            <div style="font-size: 0.7rem; color: #10b981; margin-top: 3px;">Range: ₹{prediction['ci_lower_5y']}L - ₹{prediction['ci_upper_5y']}L</div>
+        <div class="cyber-card" style="text-align: center;">
+            <div style="font-size: 1.3rem; font-weight: 800; color: #00F2FE; font-family: 'JetBrains Mono', monospace;">₹{prediction['predicted_future_price_5y']:,.2f} L</div>
+            <div style="font-size: 0.68rem; color: #8A99AD; text-transform: uppercase;">5Y Forecasted Price</div>
+            <div style="font-size: 0.7rem; color: #2ECC71; margin-top: 3px;">Range: ₹{prediction['ci_lower_5y']}L - ₹{prediction['ci_upper_5y']}L</div>
         </div>
         """, unsafe_allow_html=True)
     with k2:
         st.markdown(f"""
-        <div class="summary-metric-box">
-            <div class="summary-val" style="color: #10b981;">₹{prediction['net_gain_5y_lakhs']:,.2f} L</div>
-            <div class="summary-lbl">5Y Net Capital Gain</div>
-            <div style="font-size: 0.7rem; color: #10b981; margin-top: 3px;">+{prediction['roi_5y_percent']:.1f}% Absolute ROI</div>
+        <div class="cyber-card" style="text-align: center;">
+            <div style="font-size: 1.3rem; font-weight: 800; color: #2ECC71; font-family: 'JetBrains Mono', monospace;">₹{prediction['net_gain_5y_lakhs']:,.2f} L</div>
+            <div style="font-size: 0.68rem; color: #8A99AD; text-transform: uppercase;">5Y Net Capital Gain</div>
+            <div style="font-size: 0.7rem; color: #2ECC71; margin-top: 3px;">+{prediction['roi_5y_percent']:.1f}% Absolute ROI</div>
         </div>
         """, unsafe_allow_html=True)
     with k3:
         st.markdown(f"""
-        <div class="summary-metric-box">
-            <div class="summary-val" style="color: #F5C518;">{prediction['annualized_cagr_percent']:.1f}%</div>
-            <div class="summary-lbl">Annualized CAGR</div>
-            <div style="font-size: 0.7rem; color: #8E9DB2; margin-top: 3px;">Hurdle: 8.5% p.a.</div>
+        <div class="cyber-card" style="text-align: center;">
+            <div style="font-size: 1.3rem; font-weight: 800; color: #F2C94C; font-family: 'JetBrains Mono', monospace;">{prediction['annualized_cagr_percent']:.1f}%</div>
+            <div style="font-size: 0.68rem; color: #8A99AD; text-transform: uppercase;">Annualized CAGR</div>
+            <div style="font-size: 0.7rem; color: #8A99AD; margin-top: 3px;">Benchmark: 8.5% p.a.</div>
         </div>
         """, unsafe_allow_html=True)
     with k4:
         st.markdown(f"""
-        <div class="summary-metric-box">
-            <div class="summary-val" style="color: #c084fc;">{prediction['infrastructure_score']}/100</div>
-            <div class="summary-lbl">Infrastructure Score</div>
-            <div style="font-size: 0.7rem; color: #10b981; margin-top: 3px;">Civic & Transit Index</div>
+        <div class="cyber-card" style="text-align: center;">
+            <div style="font-size: 1.3rem; font-weight: 800; color: #9B51E0; font-family: 'JetBrains Mono', monospace;">{prediction['infrastructure_score']}/100</div>
+            <div style="font-size: 0.68rem; color: #8A99AD; text-transform: uppercase;">Infrastructure Score</div>
+            <div style="font-size: 0.7rem; color: #2ECC71; margin-top: 3px;">Civic & Transit Index</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1151,10 +916,10 @@ with tab_dashboard:
             mode="lines+markers+text",
             text=[f"₹{v}L" for v in traj_df["Estimated_Price_Lakhs"]],
             textposition="top center",
-            line=dict(color="#F5C518", width=3.5, shape="spline"),
-            marker=dict(size=8, color="#FFFFFF", line=dict(color="#F5C518", width=2)),
+            line=dict(color="#00F2FE", width=3.5, shape="spline"),
+            marker=dict(size=8, color="#FFFFFF", line=dict(color="#00F2FE", width=2)),
             fill="tozeroy",
-            fillcolor="rgba(245, 197, 24, 0.12)",
+            fillcolor="rgba(0, 242, 254, 0.12)",
             name="Forecasted Valuation"
         ))
         
@@ -1162,7 +927,7 @@ with tab_dashboard:
             x=[traj_df["Year"].iloc[-1], traj_df["Year"].iloc[-1]],
             y=[prediction["ci_lower_5y"], prediction["ci_upper_5y"]],
             mode="markers",
-            marker=dict(symbol="line-ew", size=25, color="#38bdf8", line=dict(width=3)),
+            marker=dict(symbol="line-ew", size=25, color="#F2C94C", line=dict(width=3)),
             name="95% Confidence Envelope"
         ))
         
@@ -1216,17 +981,17 @@ with tab_dashboard:
     # Key Value Drivers
     st.markdown("#### 🧠 AI Decision Drivers & Value Attribution")
     for factor in prediction["decision_factors"]:
-        st.markdown(f'<div class="driver-pill">{factor}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="cyber-card" style="padding: 0.6rem 0.95rem; font-size: 0.82rem; margin-bottom: 0.35rem; border-left: 3px solid #00F2FE;">{factor}</div>', unsafe_allow_html=True)
 
 
 # ==============================================================================
-# TAB 2: ANALYTICS (20-POINT MARKET INTELLIGENCE HUB)
+# TAB 2: 20-POINT MARKET INTELLIGENCE HUB (EDA)
 # ==============================================================================
 with tab_analytics:
     st.markdown("""
     <div style="margin-bottom: 1.2rem;">
         <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">📊 20-Point Exploratory Data Analysis & Market Intelligence</h3>
-        <p style="color: #8E9DB2; font-size: 0.9rem;">Comprehensive empirical answers and strategic insights for all 20 business questions outlined in the project brief.</p>
+        <p style="color: #8A99AD; font-size: 0.9rem;">Comprehensive empirical answers and strategic insights for all 20 business questions outlined in the project brief.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1245,7 +1010,7 @@ with tab_analytics:
         c1, c2 = st.columns(2)
         with c1:
             st.markdown("### Q1: What is the distribution of property prices?")
-            fig_q1 = px.histogram(df_data, x="Price_in_Lakhs", nbins=40, marginal="box", color_discrete_sequence=["#F5C518"], title="Property Price Distribution (₹ Lakhs)", template="plotly_dark")
+            fig_q1 = px.histogram(df_data, x="Price_in_Lakhs", nbins=40, marginal="box", color_discrete_sequence=["#00F2FE"], title="Property Price Distribution (₹ Lakhs)", template="plotly_dark")
             fig_q1.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q1, use_container_width=True)
             render_graph_insights(
@@ -1255,7 +1020,7 @@ with tab_analytics:
             
         with c2:
             st.markdown("### Q2: What is the distribution of property sizes?")
-            fig_q2 = px.histogram(df_data, x="Size_in_SqFt", nbins=40, marginal="box", color_discrete_sequence=["#10b981"], title="Property Size Distribution (Sq Ft)", template="plotly_dark")
+            fig_q2 = px.histogram(df_data, x="Size_in_SqFt", nbins=40, marginal="box", color_discrete_sequence=["#2ECC71"], title="Property Size Distribution (Sq Ft)", template="plotly_dark")
             fig_q2.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q2, use_container_width=True)
             render_graph_insights(
@@ -1299,7 +1064,7 @@ with tab_analytics:
         with c1:
             st.markdown("### Q6: What is the average price per sq ft by state?")
             state_df = df_data.groupby("State")["Price_per_SqFt"].mean().reset_index().sort_values("Price_per_SqFt", ascending=False)
-            fig_q6 = px.bar(state_df, x="State", y="Price_per_SqFt", color="Price_per_SqFt", color_continuous_scale="YlOrBr", title="Average Price per Sq Ft by State", template="plotly_dark")
+            fig_q6 = px.bar(state_df, x="State", y="Price_per_SqFt", color="Price_per_SqFt", color_continuous_scale="Purples", title="Average Price per Sq Ft by State", template="plotly_dark")
             fig_q6.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q6, use_container_width=True)
             render_graph_insights(
@@ -1310,7 +1075,7 @@ with tab_analytics:
         with c2:
             st.markdown("### Q7: What is the average property price by city?")
             city_df = df_data.groupby("City")["Price_in_Lakhs"].mean().reset_index().sort_values("Price_in_Lakhs", ascending=False)
-            fig_q7 = px.bar(city_df, x="City", y="Price_in_Lakhs", color="Price_in_Lakhs", color_continuous_scale="Viridis", title="Average Property Price by City (₹ Lakhs)", template="plotly_dark")
+            fig_q7 = px.bar(city_df, x="City", y="Price_in_Lakhs", color="Price_in_Lakhs", color_continuous_scale="Teal", title="Average Property Price by City (₹ Lakhs)", template="plotly_dark")
             fig_q7.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q7, use_container_width=True)
             render_graph_insights(
@@ -1321,9 +1086,9 @@ with tab_analytics:
         c3, c4 = st.columns(2)
         with c3:
             st.markdown("### Q8: What is the median age of properties by locality?")
-            selected_city = st.selectbox("Filter Localities by City:", options=sorted(df_data["City"].unique()), key="q8_city_sophia")
+            selected_city = st.selectbox("Filter Localities by City:", options=sorted(df_data["City"].unique()), key="q8_city_cyber")
             sub_loc = df_data[df_data["City"] == selected_city].groupby("Locality")["Age_of_Property"].median().reset_index()
-            fig_q8 = px.bar(sub_loc, x="Locality", y="Age_of_Property", color="Age_of_Property", color_continuous_scale="Blues", title=f"Median Property Age in {selected_city}", template="plotly_dark")
+            fig_q8 = px.bar(sub_loc, x="Locality", y="Age_of_Property", color="Age_of_Property", color_continuous_scale="Viridis", title=f"Median Property Age in {selected_city}", template="plotly_dark")
             fig_q8.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q8, use_container_width=True)
             render_graph_insights(
@@ -1400,7 +1165,7 @@ with tab_analytics:
         with c4:
             st.markdown("### Q15: How does price per sq ft vary by property facing direction?")
             facing_df = df_data.groupby("Facing")["Price_per_SqFt"].mean().reset_index().sort_values("Price_per_SqFt", ascending=False)
-            fig_q15 = px.bar(facing_df, x="Facing", y="Price_per_SqFt", color="Price_per_SqFt", color_continuous_scale="Teal", title="Avg Price per Sq Ft by Facing Direction", template="plotly_dark")
+            fig_q15 = px.bar(facing_df, x="Facing", y="Price_per_SqFt", color="Price_per_SqFt", color_continuous_scale="Purples", title="Avg Price per Sq Ft by Facing Direction", template="plotly_dark")
             fig_q15.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q15, use_container_width=True)
             render_graph_insights(
@@ -1412,7 +1177,7 @@ with tab_analytics:
         c1, c2 = st.columns(2)
         with c1:
             st.markdown("### Q16: How many properties belong to each owner type?")
-            fig_q16 = px.pie(df_data, names="Owner_Type", hole=0.45, title="Distribution of Properties by Owner Type", template="plotly_dark", color_discrete_sequence=["#F5C518", "#38bdf8", "#10b981"])
+            fig_q16 = px.pie(df_data, names="Owner_Type", hole=0.45, title="Distribution of Properties by Owner Type", template="plotly_dark", color_discrete_sequence=["#00F2FE", "#4FACFE", "#9B51E0"])
             fig_q16.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q16, use_container_width=True)
             render_graph_insights(
@@ -1422,7 +1187,7 @@ with tab_analytics:
             
         with c2:
             st.markdown("### Q17: How many properties are available under each availability status?")
-            fig_q17 = px.pie(df_data, names="Availability_Status", hole=0.45, title="Distribution by Availability Status", template="plotly_dark", color_discrete_sequence=["#10b981", "#F5C518", "#c084fc"])
+            fig_q17 = px.pie(df_data, names="Availability_Status", hole=0.45, title="Distribution by Availability Status", template="plotly_dark", color_discrete_sequence=["#2ECC71", "#00F2FE", "#F2C94C"])
             fig_q17.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q17, use_container_width=True)
             render_graph_insights(
@@ -1445,7 +1210,7 @@ with tab_analytics:
             st.markdown("### Q19: How do amenities affect price per sq ft?")
             amen_df = df_data.groupby("Amenity_Count")["Price_per_SqFt"].mean().reset_index()
             fig_q19 = px.line(amen_df, x="Amenity_Count", y="Price_per_SqFt", markers=True, title="Amenity Count vs Average Price per Sq Ft", template="plotly_dark")
-            fig_q19.update_traces(line_color="#F5C518", marker_color="#FFFFFF")
+            fig_q19.update_traces(line_color="#00F2FE", marker_color="#FFFFFF")
             fig_q19.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q19, use_container_width=True)
             render_graph_insights(
@@ -1482,7 +1247,7 @@ with tab_properties:
     st.markdown("""
     <div style="margin-bottom: 1.2rem;">
         <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">🔍 Deal Finder & Underpriced Property Screener</h3>
-        <p style="color: #8E9DB2; font-size: 0.9rem;">Filter across 12,000 listings to uncover high-appreciation deals trading below locality benchmark PSF.</p>
+        <p style="color: #8A99AD; font-size: 0.9rem;">Filter across 12,000 listings to uncover high-appreciation deals trading below locality benchmark PSF.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1535,26 +1300,26 @@ with tab_portfolio:
     st.markdown("""
     <div style="margin-bottom: 1.2rem;">
         <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">⚖️ Head-to-Head Property Comparison Matrix</h3>
-        <p style="color: #8E9DB2; font-size: 0.9rem;">Evaluate two properties side-by-side (e.g. 78 Park Ave vs 12 Sky Tower) to determine the optimal capital allocation choice.</p>
+        <p style="color: #8A99AD; font-size: 0.9rem;">Evaluate two properties side-by-side to determine the optimal capital allocation choice.</p>
     </div>
     """, unsafe_allow_html=True)
     
     p_col1, p_col2 = st.columns(2)
     with p_col1:
-        st.markdown("#### 🏢 Property Option A (e.g. 78 Park Ave)")
-        c_a_city = st.selectbox("Option A: City", sorted(city_locality_map.keys()), index=0, key="cmp_c_a_sophia")
-        c_a_loc = st.selectbox("Option A: Locality", sorted(city_locality_map[c_a_city]), key="cmp_l_a_sophia")
-        c_a_bhk = st.slider("Option A: BHK", 1, 5, 3, key="cmp_b_a_sophia")
-        c_a_size = st.number_input("Option A: Size (Sq Ft)", 400, 6000, 1400, key="cmp_s_a_sophia")
-        c_a_price = st.number_input("Option A: Price (₹ Lakhs)", 20.0, 1000.0, 175.0, key="cmp_p_a_sophia")
+        st.markdown("#### 🏢 Property Option A")
+        c_a_city = st.selectbox("Option A: City", sorted(city_locality_map.keys()), index=0, key="cmp_c_a_cyber")
+        c_a_loc = st.selectbox("Option A: Locality", sorted(city_locality_map[c_a_city]), key="cmp_l_a_cyber")
+        c_a_bhk = st.slider("Option A: BHK", 1, 5, 3, key="cmp_b_a_cyber")
+        c_a_size = st.number_input("Option A: Size (Sq Ft)", 400, 6000, 1400, key="cmp_s_a_cyber")
+        c_a_price = st.number_input("Option A: Price (₹ Lakhs)", 20.0, 1000.0, 175.0, key="cmp_p_a_cyber")
         
     with p_col2:
-        st.markdown("#### 🏙️ Property Option B (e.g. 12 Sky Tower)")
-        c_b_city = st.selectbox("Option B: City", sorted(city_locality_map.keys()), index=1, key="cmp_c_b_sophia")
-        c_b_loc = st.selectbox("Option B: Locality", sorted(city_locality_map[c_b_city]), key="cmp_l_b_sophia")
-        c_b_bhk = st.slider("Option B: BHK", 1, 5, 3, key="cmp_b_b_sophia")
-        c_b_size = st.number_input("Option B: Size (Sq Ft)", 400, 6000, 1550, key="cmp_s_b_sophia")
-        c_b_price = st.number_input("Option B: Price (₹ Lakhs)", 20.0, 1000.0, 160.0, key="cmp_p_b_sophia")
+        st.markdown("#### 🏙️ Property Option B")
+        c_b_city = st.selectbox("Option B: City", sorted(city_locality_map.keys()), index=1, key="cmp_c_b_cyber")
+        c_b_loc = st.selectbox("Option B: Locality", sorted(city_locality_map[c_b_city]), key="cmp_l_b_cyber")
+        c_b_bhk = st.slider("Option B: BHK", 1, 5, 3, key="cmp_b_b_cyber")
+        c_b_size = st.number_input("Option B: Size (Sq Ft)", 400, 6000, 1550, key="cmp_s_b_cyber")
+        c_b_price = st.number_input("Option B: Price (₹ Lakhs)", 20.0, 1000.0, 160.0, key="cmp_p_b_cyber")
         
     if st.button("⚖️ Run Comparative Valuation Analysis", use_container_width=True):
         state_a = df_data[df_data["City"] == c_a_city]["State"].iloc[0]
@@ -1634,8 +1399,8 @@ with tab_portfolio:
             {"Metric": "Infrastructure Score", "Option A": res_a["infrastructure_score"], "Option B": res_b["infrastructure_score"]}
         ])
         fig_comp = go.Figure(data=[
-            go.Bar(name=f"Option A ({c_a_city} - {c_a_loc})", x=comp_chart_df["Metric"], y=comp_chart_df["Option A"], marker_color="#F5C518"),
-            go.Bar(name=f"Option B ({c_b_city} - {c_b_loc})", x=comp_chart_df["Metric"], y=comp_chart_df["Option B"], marker_color="#38bdf8")
+            go.Bar(name=f"Option A ({c_a_city} - {c_a_loc})", x=comp_chart_df["Metric"], y=comp_chart_df["Option A"], marker_color="#00F2FE"),
+            go.Bar(name=f"Option B ({c_b_city} - {c_b_loc})", x=comp_chart_df["Metric"], y=comp_chart_df["Option B"], marker_color="#4FACFE")
         ])
         fig_comp.update_layout(barmode="group", template="plotly_dark", height=360, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", margin=dict(l=20, r=20, t=30, b=20))
         st.plotly_chart(fig_comp, use_container_width=True)
@@ -1655,7 +1420,7 @@ with tab_support:
     st.markdown("""
     <div style="margin-bottom: 1.2rem;">
         <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">🤖 MLOps Experiment Tracking & Model Registry</h3>
-        <p style="color: #8E9DB2; font-size: 0.9rem;">Complete transparency into experiment iterations, parameter logging, and evaluation metrics via MLflow.</p>
+        <p style="color: #8A99AD; font-size: 0.9rem;">Complete transparency into experiment iterations, parameter logging, and evaluation metrics via MLflow.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1709,10 +1474,10 @@ with tab_support:
                 recommendation_text="In financial underwriting, apply a conservative ±5.5% margin of safety (the empirical standard error) to stress-test debt service coverage."
             )
 
-# Modern Sophia FinTech Footer
+# High-Tech Footer
 st.markdown("---")
 st.markdown("""
-<div style="text-align: center; padding: 1rem 0; color: #64748b; font-size: 0.8rem;">
-    <strong>SOPHIA AI REAL ESTATE ADVISOR</strong> • Enterprise Multi-Metro Predictive Intelligence Suite • Powered by Scikit-Learn & MLflow
+<div style="text-align: center; padding: 1rem 0; color: #70809A; font-size: 0.78rem;">
+    [ <strong>CYBERPROP 3D HOLOGRAPHIC INTELLIGENCE</strong> ] • Enterprise Geospatial Real Estate Valuation • Powered by Scikit-Learn & MLflow
 </div>
 """, unsafe_allow_html=True)

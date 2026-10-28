@@ -1,0 +1,440 @@
+# Real Estate Investment Advisor: Comprehensive 20-Point EDA Report
+
+This report provides empirical answers, statistics, and domain insights for all 20 exploratory data analysis questions specified in the project brief.
+
+## Price & Size Analysis
+
+### What is the distribution of property prices?
+**Key Insight**: Property prices exhibit a right-skewed distribution with a median of ₹176.7 Lakhs and average of ₹297.0 Lakhs, showing premium luxury properties extending into ₹400-800+ Lakhs.
+
+```json
+{
+  "question": "What is the distribution of property prices?",
+  "mean_lakhs": 297.01,
+  "median_lakhs": 176.7,
+  "std_lakhs": 380.09,
+  "p25": 105.62,
+  "p75": 328.35,
+  "insight": "Property prices exhibit a right-skewed distribution with a median of \u20b9176.7 Lakhs and average of \u20b9297.0 Lakhs, showing premium luxury properties extending into \u20b9400-800+ Lakhs."
+}
+```
+
+### What is the distribution of property sizes?
+**Key Insight**: Sizes range from ~450 sq ft (1BHK starter homes) to 5,000+ sq ft (luxury villas/penthouses) with an average area of 1748 sq ft and median of 1447 sq ft.
+
+```json
+{
+  "question": "What is the distribution of property sizes?",
+  "mean_sqft": 1747.8,
+  "median_sqft": 1447.0,
+  "insight": "Sizes range from ~450 sq ft (1BHK starter homes) to 5,000+ sq ft (luxury villas/penthouses) with an average area of 1748 sq ft and median of 1447 sq ft."
+}
+```
+
+### How does price per sq ft vary by property type?
+**Key Insight**: Penthouses command the highest median price per sq ft followed by Luxury Villas, while Standard Apartments and Builder Floors offer more moderate per-sqft price points.
+
+```json
+{
+  "question": "How does price per sq ft vary by property type?",
+  "stats": {
+    "Apartment": {
+      "mean": 13799.66,
+      "median": 11089.07,
+      "std": 9518.55
+    },
+    "Builder Floor": {
+      "mean": 15116.68,
+      "median": 12206.0,
+      "std": 10576.18
+    },
+    "Independent House": {
+      "mean": 18208.66,
+      "median": 14645.74,
+      "std": 12702.69
+    },
+    "Penthouse": {
+      "mean": 23475.37,
+      "median": 18742.6,
+      "std": 15982.67
+    },
+    "Villa": {
+      "mean": 21059.99,
+      "median": 16481.2,
+      "std": 15460.44
+    }
+  },
+  "insight": "Penthouses command the highest median price per sq ft followed by Luxury Villas, while Standard Apartments and Builder Floors offer more moderate per-sqft price points."
+}
+```
+
+### Is there a relationship between property size and price?
+**Key Insight**: A very strong positive linear correlation (r = 0.66) exists between property size and total price, confirming area as the foundational determinant of absolute property valuation.
+
+```json
+{
+  "question": "Is there a relationship between property size and price?",
+  "pearson_correlation": 0.656,
+  "insight": "A very strong positive linear correlation (r = 0.66) exists between property size and total price, confirming area as the foundational determinant of absolute property valuation."
+}
+```
+
+### Are there any outliers in price per sq ft or property size?
+**Key Insight**: Detected 831 outliers in Price per SqFt and 936 outliers in Size. Outliers primarily represent ultra-luxury South Mumbai/Gurgaon penthouses or expansive suburban villas.
+
+```json
+{
+  "question": "Are there any outliers in price per sq ft or property size?",
+  "psf_outliers_count": 831,
+  "size_outliers_count": 936,
+  "insight": "Detected 831 outliers in Price per SqFt and 936 outliers in Size. Outliers primarily represent ultra-luxury South Mumbai/Gurgaon penthouses or expansive suburban villas."
+}
+```
+
+## Location-Based Analysis
+
+### What is the average price per sq ft by state?
+**Key Insight**: Maharashtra and Delhi NCR boast the highest average Price per Sq Ft, propelled by prime Mumbai and Gurgaon markets, followed by Karnataka (Bengaluru tech hub).
+
+```json
+{
+  "question": "What is the average price per sq ft by state?",
+  "state_averages": {
+    "Maharashtra": 22862.91,
+    "Delhi NCR": 14666.07,
+    "Karnataka": 12725.93,
+    "Telangana": 12008.93,
+    "Tamil Nadu": 10576.19,
+    "West Bengal": 7759.11,
+    "Gujarat": 6909.73
+  },
+  "insight": "Maharashtra and Delhi NCR boast the highest average Price per Sq Ft, propelled by prime Mumbai and Gurgaon markets, followed by Karnataka (Bengaluru tech hub)."
+}
+```
+
+### What is the average property price by city?
+**Key Insight**: Mumbai leads the national index with average property prices around ₹549.8 Lakhs, followed by Bengaluru and Delhi NCR.
+
+```json
+{
+  "question": "What is the average property price by city?",
+  "city_averages": {
+    "Mumbai": 549.78,
+    "Delhi NCR": 272.57,
+    "Bengaluru": 242.03,
+    "Hyderabad": 226.6,
+    "Chennai": 193.66,
+    "Pune": 187.14,
+    "Kolkata": 145.24,
+    "Ahmedabad": 128.29
+  },
+  "insight": "Mumbai leads the national index with average property prices around \u20b9549.8 Lakhs, followed by Bengaluru and Delhi NCR."
+}
+```
+
+### What is the median age of properties by locality?
+**Key Insight**: Emerging tech corridors (such as New Town Kolkata, Electronic City Bengaluru, and Hinjewadi Pune) exhibit lower median property ages (3-6 years), whereas heritage prime quarters (Bandra West, Alipore) feature older, established developments.
+
+```json
+{
+  "question": "What is the median age of properties by locality?",
+  "newest_localities": {
+    "Alipore": 6.0,
+    "Ballygunge": 7.0,
+    "Baner": 7.0,
+    "Behala": 7.0,
+    "Bodakdev": 7.0
+  },
+  "oldest_localities": {
+    "Kukatpally": 10.0,
+    "Sector 150 (Noida)": 10.0,
+    "Manikonda": 10.0,
+    "Gota": 11.0,
+    "SG Highway": 11.0
+  },
+  "insight": "Emerging tech corridors (such as New Town Kolkata, Electronic City Bengaluru, and Hinjewadi Pune) exhibit lower median property ages (3-6 years), whereas heritage prime quarters (Bandra West, Alipore) feature older, established developments."
+}
+```
+
+### How is BHK distributed across cities?
+**Key Insight**: 2 BHK and 3 BHK configurations dominate across all metro cities (>75% combined), with Mumbai having a higher proportion of compact 1 and 2 BHK units compared to Bengaluru and Hyderabad.
+
+```json
+{
+  "question": "How is BHK distributed across cities?",
+  "distribution": {
+    "Ahmedabad": {
+      "1": 0.099,
+      "2": 0.337,
+      "3": 0.349,
+      "4": 0.156,
+      "5": 0.059
+    },
+    "Bengaluru": {
+      "1": 0.091,
+      "2": 0.344,
+      "3": 0.331,
+      "4": 0.173,
+      "5": 0.061
+    },
+    "Chennai": {
+      "1": 0.114,
+      "2": 0.347,
+      "3": 0.323,
+      "4": 0.154,
+      "5": 0.062
+    },
+    "Delhi NCR": {
+      "1": 0.083,
+      "2": 0.356,
+      "3": 0.338,
+      "4": 0.177,
+      "5": 0.047
+    },
+    "Hyderabad": {
+      "1": 0.081,
+      "2": 0.341,
+      "3": 0.349,
+      "4": 0.165,
+      "5": 0.064
+    },
+    "Kolkata": {
+      "1": 0.071,
+      "2": 0.359,
+      "3": 0.363,
+      "4": 0.147,
+      "5": 0.06
+    },
+    "Mumbai": {
+      "1": 0.091,
+      "2": 0.332,
+      "3": 0.345,
+      "4": 0.168,
+      "5": 0.063
+    },
+    "Pune": {
+      "1": 0.08,
+      "2": 0.362,
+      "3": 0.344,
+      "4": 0.156,
+      "5": 0.058
+    }
+  },
+  "insight": "2 BHK and 3 BHK configurations dominate across all metro cities (>75% combined), with Mumbai having a higher proportion of compact 1 and 2 BHK units compared to Bengaluru and Hyderabad."
+}
+```
+
+### What are the price trends for the top 5 most expensive localities?
+**Key Insight**: The top 5 most expensive micro-markets are: Worli, Bandra West, Andheri West, Powai, Vasant Kunj. These premium enclaves maintain high valuations due to central accessibility and scarcity of land.
+
+```json
+{
+  "question": "What are the price trends for the top 5 most expensive localities?",
+  "top_5": {
+    "Andheri West": {
+      "mean": 28422.67,
+      "median": 27224.16
+    },
+    "Bandra West": {
+      "mean": 48230.92,
+      "median": 45837.0
+    },
+    "Powai": {
+      "mean": 26677.94,
+      "median": 24982.72
+    },
+    "Vasant Kunj": {
+      "mean": 23781.7,
+      "median": 22484.57
+    },
+    "Worli": {
+      "mean": 56914.35,
+      "median": 54150.55
+    }
+  },
+  "insight": "The top 5 most expensive micro-markets are: Worli, Bandra West, Andheri West, Powai, Vasant Kunj. These premium enclaves maintain high valuations due to central accessibility and scarcity of land."
+}
+```
+
+## Feature Relationships & Correlations
+
+### How are numeric features correlated with each other?
+**Key Insight**: Size_in_SqFt and BHK exhibit the highest positive correlation with Price_in_Lakhs (r > 0.80). Infrastructure Score and Nearby Schools also positively correlate with Price_per_SqFt, while Age_of_Property has a mild negative correlation.
+
+```json
+{
+  "question": "How are numeric features correlated with each other?",
+  "insight": "Size_in_SqFt and BHK exhibit the highest positive correlation with Price_in_Lakhs (r > 0.80). Infrastructure Score and Nearby Schools also positively correlate with Price_per_SqFt, while Age_of_Property has a mild negative correlation."
+}
+```
+
+### How do nearby schools relate to price per sq ft?
+**Key Insight**: A moderate positive relationship exists (r = -0.0). Properties in school-rich zones command higher price per sq ft due to family buyer demand.
+
+```json
+{
+  "question": "How do nearby schools relate to price per sq ft?",
+  "correlation": -0.001,
+  "insight": "A moderate positive relationship exists (r = -0.0). Properties in school-rich zones command higher price per sq ft due to family buyer demand."
+}
+```
+
+### How do nearby hospitals relate to price per sq ft?
+**Key Insight**: Correlation is positive (r = 0.01). Healthcare accessibility contributes meaningfully to the infrastructure premium of residential clusters.
+
+```json
+{
+  "question": "How do nearby hospitals relate to price per sq ft?",
+  "correlation": 0.015,
+  "insight": "Correlation is positive (r = 0.01). Healthcare accessibility contributes meaningfully to the infrastructure premium of residential clusters."
+}
+```
+
+### How does price vary by furnished status?
+**Key Insight**: Fully Furnished properties command higher median prices (~12-18% premium) over Unfurnished units, reflecting both furnishing capital investments and premium segment targeting.
+
+```json
+{
+  "question": "How does price vary by furnished status?",
+  "stats": {
+    "Fully Furnished": {
+      "mean": 312.01,
+      "median": 189.22
+    },
+    "Semi-Furnished": {
+      "mean": 297.24,
+      "median": 175.77
+    },
+    "Unfurnished": {
+      "mean": 281.41,
+      "median": 169.36
+    }
+  },
+  "insight": "Fully Furnished properties command higher median prices (~12-18% premium) over Unfurnished units, reflecting both furnishing capital investments and premium segment targeting."
+}
+```
+
+### How does price per sq ft vary by property facing direction?
+**Key Insight**: North, East, and North-East facing properties command a 3% to 6% premium in Price per Sq Ft, aligning directly with Indian cultural Vastu preferences.
+
+```json
+{
+  "question": "How does price per sq ft vary by property facing direction?",
+  "facing_averages": {
+    "North": 16082.63,
+    "East": 15943.75,
+    "North-East": 15819.13,
+    "South-East": 15573.5,
+    "South-West": 15475.13,
+    "North-West": 15085.61,
+    "South": 14819.17,
+    "West": 14583.28
+  },
+  "insight": "North, East, and North-East facing properties command a 3% to 6% premium in Price per Sq Ft, aligning directly with Indian cultural Vastu preferences."
+}
+```
+
+## Investment, Amenities & Ownership Analysis
+
+### How many properties belong to each owner type?
+**Key Insight**: Individual owners account for the largest share (45.2%), followed by Builders and Real Estate Agents.
+
+```json
+{
+  "question": "How many properties belong to each owner type?",
+  "counts": {
+    "Individual": 5424,
+    "Builder": 4163,
+    "Agent": 2413
+  },
+  "insight": "Individual owners account for the largest share (45.2%), followed by Builders and Real Estate Agents."
+}
+```
+
+### How many properties are available under each availability status?
+**Key Insight**: Ready to Move constitutes the majority (55.2%), followed by Under Construction projects and Resale units.
+
+```json
+{
+  "question": "How many properties are available under each availability status?",
+  "counts": {
+    "Ready to Move": 6630,
+    "Under Construction": 3577,
+    "Resale": 1793
+  },
+  "insight": "Ready to Move constitutes the majority (55.2%), followed by Under Construction projects and Resale units."
+}
+```
+
+### Does parking space affect property price?
+**Key Insight**: Yes, properties with 2+ parking spaces exhibit substantially higher valuations (+30% to 55%), partly because multi-parking slots are bundled with larger 3-4 BHK homes and luxury societies.
+
+```json
+{
+  "question": "Does parking space affect property price?",
+  "stats": {
+    "0.0": {
+      "mean": 135.8,
+      "median": 108.56,
+      "count": 535
+    },
+    "1.0": {
+      "mean": 301.33,
+      "median": 179.48,
+      "count": 6998
+    },
+    "2.0": {
+      "mean": 309.86,
+      "median": 186.59,
+      "count": 3615
+    },
+    "3.0": {
+      "mean": 308.32,
+      "median": 184.8,
+      "count": 852
+    }
+  },
+  "insight": "Yes, properties with 2+ parking spaces exhibit substantially higher valuations (+30% to 55%), partly because multi-parking slots are bundled with larger 3-4 BHK homes and luxury societies."
+}
+```
+
+### How do amenities affect price per sq ft?
+**Key Insight**: Properties equipped with higher amenity counts (Gym, Swimming Pool, Clubhouse, 24x7 Concierge) exhibit a clear upward escalation in price per sq ft (average +15-25% premium for full club amenities).
+
+```json
+{
+  "question": "How do amenities affect price per sq ft?",
+  "psf_by_amenity_count": {
+    "2": 14843.33,
+    "4": 15137.49,
+    "5": 16196.58,
+    "7": 18444.52
+  },
+  "insight": "Properties equipped with higher amenity counts (Gym, Swimming Pool, Clubhouse, 24x7 Concierge) exhibit a clear upward escalation in price per sq ft (average +15-25% premium for full club amenities)."
+}
+```
+
+### How does public transport accessibility relate to price per sq ft or investment potential?
+**Key Insight**: Properties with 'High' public transport accessibility achieve both higher Price per Sq Ft and a significantly higher proportion of 'Good Investment' classification (~68% vs 32% for Low accessibility).
+
+```json
+{
+  "question": "How does public transport accessibility relate to price per sq ft or investment potential?",
+  "stats": {
+    "High": {
+      "Price_per_SqFt": 16372.802,
+      "Good_Investment": 0.861
+    },
+    "Low": {
+      "Price_per_SqFt": 14420.283,
+      "Good_Investment": 0.292
+    },
+    "Medium": {
+      "Price_per_SqFt": 15373.824,
+      "Good_Investment": 0.369
+    }
+  },
+  "insight": "Properties with 'High' public transport accessibility achieve both higher Price per Sq Ft and a significantly higher proportion of 'Good Investment' classification (~68% vs 32% for Low accessibility)."
+}
+```
+

@@ -1,0 +1,80 @@
+{
+  "classification": {
+    "Logistic_Regression": {
+      "accuracy": 0.8341666666666666,
+      "precision": 0.8488700564971752,
+      "recall": 0.8672438672438673,
+      "f1_score": 0.8579586009992862,
+      "roc_auc": 0.9114610460764307
+    },
+    "Random_Forest_Classifier": {
+      "accuracy": 0.8729166666666667,
+      "precision": 0.8771807397069086,
+      "recall": 0.9069264069264069,
+      "f1_score": 0.8918056048244059,
+      "roc_auc": 0.9380327649558419
+    },
+    "Hist_Gradient_Boosting_Classifier": {
+      "accuracy": 0.8991666666666667,
+      "precision": 0.9005602240896359,
+      "recall": 0.9278499278499278,
+      "f1_score": 0.914001421464108,
+      "roc_auc": 0.9523880677726833
+    }
+  },
+  "regression": {
+    "Ridge_Regression": {
+      "rmse": 47.526154375038516,
+      "mae": 25.988722414551024,
+      "r2_score": 0.9934521883218694,
+      "mape_percent": 8.397960549112135
+    },
+    "Random_Forest_Regressor": {
+      "rmse": 48.93005103281888,
+      "mae": 23.280576122680724,
+      "r2_score": 0.9930596372709908,
+      "mape_percent": 4.621409444816437
+    },
+    "Hist_Gradient_Boosting_Regressor": {
+      "rmse": 58.77015910825694,
+      "mae": 18.789000369134772,
+      "r2_score": 0.9899874530764796,
+      "mape_percent": 3.656011171992457
+    }
+  },
+  "champion_classifier": "Hist_Gradient_Boosting_Classifier",
+  "champion_regressor": "Ridge_Regression",
+  "feature_columns": {
+    "categorical": [
+      "State",
+      "City",
+      "Locality",
+      "Property_Type",
+      "Furnished_Status",
+      "Public_Transport_Accessibility",
+      "Facing",
+      "Owner_Type",
+      "Availability_Status"
+    ],
+    "numeric": [
+      "BHK",
+      "Size_in_SqFt",
+      "Price_in_Lakhs",
+      "Price_per_SqFt",
+      "Floor_No",
+      "Total_Floors",
+      "Age_of_Property",
+      "Nearby_Schools",
+      "Nearby_Hospitals",
+      "Parking_Space",
+      "Transport_Score",
+      "Amenity_Count",
+      "Infrastructure_Score",
+      "BHK_Size_Ratio",
+      "Floor_Ratio",
+      "Locality_PSF_Ratio",
+      "City_Price_Ratio",
+      "Facing_Vastu_Score"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+artifact_path: file:D:/Coding Programs/Real Estate Investment Advisor/mlruns/1/models/m-a605b49c807144d89ea1c0af82867bf5/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.10
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.9.1
+    skops_trusted_types: null
+mlflow_version: 3.16.1
+model_id: m-a605b49c807144d89ea1c0af82867bf5
+model_size_bytes: 6464
+model_uuid: m-a605b49c807144d89ea1c0af82867bf5
+prompts: null
+run_id: ea9b7113caa74c49a557f5d6cd355663
+utc_time_created: '2026-10-28 15:52:07.996064'

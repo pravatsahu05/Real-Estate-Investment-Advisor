@@ -1,7 +1,8 @@
 """
 HOLOGRAPHIC GEOSPATIAL REAL ESTATE INVESTMENT TERMINAL
 3D Cyberpunk Interactive Analytics, Profitability Prediction & 20-Point Market Intelligence.
-Matches the high-tech 3D geospatial dashboard design with holographic city maps, price stats, valuation calculator, and category distributions.
+Features an All-India Holographic Investment Map Background with all dataset locations mapped,
+polished high-tech cyberpunk UI, and enhanced bracketed filter controls.
 """
 
 import streamlit as st
@@ -24,7 +25,7 @@ from src.predictor import RealEstateAdvisorPredictor
 
 # Page Configuration: Full width, completely collapsed sidebar
 st.set_page_config(
-    page_title="CyberProp 3D | Real Estate Investment Intelligence",
+    page_title="CyberProp 3D | India Real Estate Investment Terminal",
     page_icon="🌐",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -39,11 +40,12 @@ def get_image_base64(path_str: str) -> str:
             return base64.b64encode(f.read()).decode("utf-8")
     return ""
 
+india_bg_b64 = get_image_base64("assets/india_holographic_map.png")
 city_map_b64 = get_image_base64("assets/holographic_city_map.png")
 thumb_3d_b64 = get_image_base64("assets/building_3d_thumb.png")
 
-# High-Tech Cyberpunk Dark Grid Styling
-st.markdown("""
+# High-Tech Cyberpunk Dark Grid & India Map Background Styling
+st.markdown(f"""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
     
@@ -51,184 +53,292 @@ st.markdown("""
     [data-testid="stSidebar"], 
     [data-testid="collapsedControl"],
     section[data-testid="stSidebar"],
-    #MainMenu, footer, header {
+    #MainMenu, footer, header {{
         display: none !important;
-    }
+    }}
     
     /* Full-width container polish */
-    .main .block-container {
+    .main .block-container {{
         max-width: 1440px;
         padding-top: 0.8rem;
         padding-bottom: 2rem;
         padding-left: 1.2rem;
         padding-right: 1.2rem;
-    }
+    }}
     
-    :root {
-        --bg-cyber: #0B0E1E;
-        --card-cyber: rgba(18, 23, 48, 0.75);
-        --border-cyber: rgba(110, 125, 175, 0.18);
+    :root {{
+        --bg-cyber: #070A18;
+        --card-cyber: rgba(15, 20, 42, 0.82);
+        --border-cyber: rgba(0, 242, 254, 0.22);
         --neon-cyan: #00F2FE;
         --neon-blue: #4FACFE;
         --neon-purple: #9B51E0;
         --neon-amber: #F2C94C;
-        --neon-green: #27AE60;
+        --neon-green: #22C55E;
         --text-white: #FFFFFF;
         --text-muted: #8A99AD;
-    }
+    }}
     
-    html, body, [class*="css"] {
+    html, body, [class*="css"] {{
         font-family: 'Plus Jakarta Sans', sans-serif;
         color: #f1f5f9;
-    }
+    }}
     
-    /* Cyberpunk Midnight Grid Background */
-    .stApp {
+    /* Cyberpunk Midnight Grid with Holographic India Locations Background */
+    .stApp {{
         background-color: var(--bg-cyber);
         background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            radial-gradient(at 15% 15%, rgba(155, 81, 224, 0.08) 0px, transparent 50%),
-            radial-gradient(at 85% 20%, rgba(0, 242, 254, 0.07) 0px, transparent 50%),
-            radial-gradient(at 50% 85%, rgba(79, 172, 254, 0.05) 0px, transparent 55%);
-        background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%, 100% 100%;
+            linear-gradient(rgba(7, 10, 24, 0.86), rgba(7, 10, 24, 0.94)),
+            url("data:image/png;base64,{india_bg_b64}");
+        background-position: center 40px;
+        background-repeat: no-repeat;
+        background-size: 1380px auto;
         background-attachment: fixed;
-    }
+    }}
+    
+    /* Top Master Executive Bar */
+    .cyber-top-bar {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(13, 18, 38, 0.88);
+        border: 1px solid rgba(0, 242, 254, 0.25);
+        border-radius: 14px;
+        padding: 0.85rem 1.4rem;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(0, 242, 254, 0.15);
+        margin-bottom: 1.1rem;
+    }}
+    
+    .cyber-brand-headline {{
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        color: #FFFFFF;
+        line-height: 1.1;
+    }}
+    
+    .cyber-brand-sub {{
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        color: #00F2FE;
+        text-transform: uppercase;
+    }}
+    
+    .telemetry-badges-row {{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }}
+    
+    .telemetry-pill-cyber {{
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(20, 27, 56, 0.85);
+        border: 1px solid rgba(0, 242, 254, 0.22);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #CBD5E1;
+        font-family: 'JetBrains Mono', monospace;
+    }}
+    
+    .live-dot-green {{
+        width: 7px;
+        height: 7px;
+        background: #22C55E;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #22C55E;
+    }}
     
     /* High-Tech Bento Cards */
-    .cyber-card {
-        background: rgba(17, 22, 45, 0.78);
-        border: 1px solid rgba(110, 125, 175, 0.18);
+    .cyber-card {{
+        background: rgba(14, 19, 40, 0.82);
+        border: 1px solid rgba(110, 125, 175, 0.22);
         border-radius: 12px;
-        padding: 1rem 1.15rem;
+        padding: 1.05rem 1.2rem;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
         margin-bottom: 0.9rem;
         position: relative;
-    }
+    }}
     
     /* Bracket Headers [ TITLE ] Details > */
-    .bracket-header {
+    .bracket-header {{
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 0.75rem;
-    }
+    }}
     
-    .bracket-title {
-        font-size: 0.74rem;
+    .bracket-title {{
+        font-size: 0.75rem;
         font-weight: 800;
         color: #8A99AD;
         letter-spacing: 1.2px;
         text-transform: uppercase;
-    }
+    }}
     
-    .bracket-title span {
+    .bracket-title span {{
         color: #FFFFFF;
-    }
+    }}
     
-    .bracket-link {
+    .bracket-link {{
         font-size: 0.7rem;
         color: #70809A;
         font-weight: 600;
         cursor: pointer;
         transition: color 0.2s ease;
-    }
-    .bracket-link:hover {
+    }}
+    .bracket-link:hover {{
         color: #00F2FE;
-    }
+    }}
+    
+    /* Enhanced Filter Section */
+    .filter-panel-card {{
+        background: rgba(14, 19, 40, 0.9);
+        border: 1.5px solid rgba(0, 242, 254, 0.35);
+        border-radius: 14px;
+        padding: 1.25rem 1.4rem;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(0, 242, 254, 0.12);
+        margin-bottom: 1.4rem;
+    }}
+    
+    .filter-section-title {{
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: #00F2FE;
+        margin-bottom: 0.5rem;
+    }}
+    
+    /* Quick Metro Chips */
+    .metro-chip-grid {{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 1rem;
+    }}
+    
+    .metro-chip {{
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(22, 30, 62, 0.85);
+        border: 1px solid rgba(0, 242, 254, 0.25);
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: #CBD5E1;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }}
+    .metro-chip:hover, .metro-chip.active {{
+        background: rgba(0, 242, 254, 0.16);
+        border-color: #00F2FE;
+        color: #FFFFFF;
+        box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+    }}
     
     /* Amenity Filter Bar */
-    .filter-pills-bar {
+    .filter-pills-bar {{
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
         margin-bottom: 0.9rem;
-    }
+    }}
     
-    .amenity-pill {
+    .amenity-pill {{
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 5px 12px;
+        padding: 6px 13px;
         border-radius: 8px;
-        font-size: 0.72rem;
+        font-size: 0.73rem;
         font-weight: 700;
         cursor: pointer;
         transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .amenity-pill:hover {
+    }}
+    .amenity-pill:hover {{
         transform: translateY(-1px);
-    }
+    }}
     
-    .p-police { background: rgba(108, 92, 231, 0.15); border: 1px solid rgba(108, 92, 231, 0.4); color: #D2B4DE; }
-    .p-school { background: rgba(241, 196, 15, 0.15); border: 1px solid rgba(241, 196, 15, 0.4); color: #F9E79F; }
-    .p-hospital { background: rgba(0, 206, 201, 0.15); border: 1px solid rgba(0, 206, 201, 0.4); color: #A3E4D7; }
-    .p-work { background: rgba(52, 152, 219, 0.15); border: 1px solid rgba(52, 152, 219, 0.4); color: #AED6F1; }
-    .p-restaurant { background: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.4); color: #A9DFBF; }
-    .p-hotel { background: rgba(26, 188, 156, 0.15); border: 1px solid rgba(26, 188, 156, 0.4); color: #A2D9CE; }
-    .p-market { background: rgba(231, 76, 60, 0.15); border: 1px solid rgba(231, 76, 60, 0.4); color: #F5B7B1; }
+    .p-police {{ background: rgba(108, 92, 231, 0.16); border: 1px solid rgba(108, 92, 231, 0.45); color: #D2B4DE; }}
+    .p-school {{ background: rgba(241, 196, 15, 0.16); border: 1px solid rgba(241, 196, 15, 0.45); color: #F9E79F; }}
+    .p-hospital {{ background: rgba(0, 206, 201, 0.16); border: 1px solid rgba(0, 206, 201, 0.45); color: #A3E4D7; }}
+    .p-work {{ background: rgba(52, 152, 219, 0.16); border: 1px solid rgba(52, 152, 219, 0.45); color: #AED6F1; }}
+    .p-restaurant {{ background: rgba(46, 204, 113, 0.16); border: 1px solid rgba(46, 204, 113, 0.45); color: #A9DFBF; }}
+    .p-hotel {{ background: rgba(26, 188, 156, 0.16); border: 1px solid rgba(26, 188, 156, 0.45); color: #A2D9CE; }}
+    .p-market {{ background: rgba(231, 76, 60, 0.16); border: 1px solid rgba(231, 76, 60, 0.45); color: #F5B7B1; }}
     
     /* 3D Map Viewport */
-    .map-viewport {
-        border: 1px solid rgba(0, 242, 254, 0.22);
+    .map-viewport {{
+        border: 1px solid rgba(0, 242, 254, 0.28);
         border-radius: 12px;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
         margin-bottom: 0.9rem;
         background: #080B18;
-    }
+    }}
     
-    .map-viewport img {
+    .map-viewport img {{
         width: 100%;
         height: auto;
         display: block;
-    }
+    }}
     
     /* Rental Demand Mini Tiles */
-    .rental-sub-box {
-        background: rgba(14, 18, 38, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+    .rental-sub-box {{
+        background: rgba(15, 20, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 10px;
         padding: 0.75rem 0.9rem;
         display: flex;
         align-items: center;
         gap: 12px;
-    }
+    }}
     
-    .rental-icon-circle {
+    .rental-icon-circle {{
         width: 38px;
         height: 38px;
         border-radius: 10px;
         background: rgba(0, 242, 254, 0.12);
-        border: 1px solid rgba(0, 242, 254, 0.25);
+        border: 1px solid rgba(0, 242, 254, 0.28);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.1rem;
-    }
+    }}
     
-    .rental-val-big {
+    .rental-val-big {{
         font-size: 1.25rem;
         font-weight: 800;
         font-family: 'JetBrains Mono', monospace;
         color: #FFFFFF;
         line-height: 1.1;
-    }
+    }}
     
-    .green-badge-up {
+    .green-badge-up {{
         font-size: 0.7rem;
         font-weight: 700;
-        color: #2ECC71;
+        color: #22C55E;
         margin-left: 6px;
-    }
+    }}
     
-    /* Expand Search Chips */
-    .chip-search {
+    /* Search Chips */
+    .chip-search {{
         display: inline-block;
-        background: rgba(22, 28, 56, 0.85);
+        background: rgba(22, 30, 62, 0.85);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 6px;
         padding: 3px 10px;
@@ -237,119 +347,119 @@ st.markdown("""
         color: #8A99AD;
         margin: 2px 3px 2px 0;
         cursor: pointer;
-    }
+    }}
     
     /* Structured Analytical Insight & Recommendation Blocks */
-    .insight-block {
-        background: rgba(13, 17, 36, 0.88);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+    .insight-block {{
+        background: rgba(12, 16, 36, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-left: 3.5px solid #00F2FE;
         border-radius: 8px;
-        padding: 0.65rem 0.9rem;
+        padding: 0.65rem 0.95rem;
         margin-top: 0.5rem;
-        margin-bottom: 0.6rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-    }
+        margin-bottom: 0.65rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }}
     
-    .insight-row-text {
-        font-size: 0.78rem;
+    .insight-row-text {{
+        font-size: 0.79rem;
         color: #cbd5e1;
-        line-height: 1.4;
+        line-height: 1.42;
         margin-bottom: 0.25rem;
-    }
+    }}
     
-    .rec-row-text {
-        font-size: 0.78rem;
+    .rec-row-text {{
+        font-size: 0.79rem;
         color: #f1f5f9;
-        line-height: 1.4;
-    }
+        line-height: 1.42;
+    }}
     
-    .badge-insight {
+    .badge-insight {{
         color: #00F2FE;
         font-weight: 700;
-    }
+    }}
     
-    .badge-rec {
-        color: #2ECC71;
+    .badge-rec {{
+        color: #22C55E;
         font-weight: 700;
-    }
+    }}
     
     /* Streamlit Tabs Navigation */
-    .stTabs [data-baseweb="tab-list"] {
+    .stTabs [data-baseweb="tab-list"] {{
         display: flex;
         justify-content: center;
         background: transparent;
         border: none;
         gap: 8px;
-        margin-bottom: 1rem;
-    }
+        margin-bottom: 1.1rem;
+    }}
     
-    .stTabs [data-baseweb="tab"] {
-        background: rgba(17, 22, 45, 0.75);
-        border: 1px solid rgba(110, 125, 175, 0.2);
+    .stTabs [data-baseweb="tab"] {{
+        background: rgba(15, 20, 42, 0.78);
+        border: 1px solid rgba(110, 125, 175, 0.22);
         border-radius: 8px;
-        padding: 6px 18px;
+        padding: 7px 20px;
         color: #8A99AD;
         font-size: 0.82rem;
         font-weight: 700;
         height: auto;
-        letter-spacing: 0.5px;
-    }
+        letter-spacing: 0.6px;
+    }}
     
-    .stTabs [aria-selected="true"] {
-        background: rgba(0, 242, 254, 0.12) !important;
+    .stTabs [aria-selected="true"] {{
+        background: rgba(0, 242, 254, 0.14) !important;
         border: 1.5px solid #00F2FE !important;
         color: #FFFFFF !important;
-        box-shadow: 0 0 14px rgba(0, 242, 254, 0.35) !important;
-    }
+        box-shadow: 0 0 16px rgba(0, 242, 254, 0.35) !important;
+    }}
     
     /* Form & Input Polish */
     div[data-baseweb="select"] > div,
-    div[data-baseweb="input"] > div {
-        background-color: rgba(14, 18, 38, 0.9) !important;
-        border-color: rgba(0, 242, 254, 0.25) !important;
+    div[data-baseweb="input"] > div {{
+        background-color: rgba(13, 17, 36, 0.92) !important;
+        border: 1px solid rgba(0, 242, 254, 0.28) !important;
         color: #ffffff !important;
         border-radius: 8px !important;
-    }
+    }}
     
-    .stButton > button {
-        background: #4A69BD !important;
-        color: #FFFFFF !important;
-        font-weight: 700 !important;
+    .stButton > button {{
+        background: linear-gradient(135deg, #0284c7 0%, #00F2FE 100%) !important;
+        color: #070A18 !important;
+        font-weight: 800 !important;
         border: none !important;
         border-radius: 8px !important;
-        padding: 0.55rem 1.2rem !important;
-        box-shadow: 0 4px 15px rgba(74, 105, 189, 0.35) !important;
-        transition: transform 0.15s ease !important;
-    }
-    .stButton > button:hover {
+        padding: 0.6rem 1.3rem !important;
+        box-shadow: 0 4px 18px rgba(0, 242, 254, 0.35) !important;
+        transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    }}
+    .stButton > button:hover {{
         transform: translateY(-2px) !important;
-        box-shadow: 0 8px 20px rgba(0, 242, 254, 0.4) !important;
-    }
+        box-shadow: 0 8px 24px rgba(0, 242, 254, 0.55) !important;
+    }}
     
-    .badge-approved {
-        background: rgba(46, 204, 113, 0.15);
-        border: 1.5px solid #2ECC71;
-        color: #A9DFBF;
+    .badge-approved {{
+        background: rgba(34, 197, 94, 0.15);
+        border: 1.5px solid #22C55E;
+        color: #86efac;
         padding: 0.55rem 1.2rem;
         border-radius: 20px;
         font-size: 0.9rem;
         font-weight: 800;
         display: inline-block;
-        box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
-    }
+        box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+    }}
     
-    .badge-declined {
-        background: rgba(231, 76, 60, 0.15);
-        border: 1.5px solid #E74C3C;
-        color: #F5B7B1;
+    .badge-declined {{
+        background: rgba(239, 68, 68, 0.15);
+        border: 1.5px solid #EF4444;
+        color: #fca5a5;
         padding: 0.55rem 1.2rem;
         border-radius: 20px;
         font-size: 0.9rem;
         font-weight: 800;
         display: inline-block;
-        box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
-    }
+        box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -401,6 +511,30 @@ eda_summary = load_eda_summary()
 leaderboard_data = load_model_leaderboard()
 city_locality_map = df_data.groupby("City")["Locality"].unique().apply(list).to_dict()
 
+# Top Master Executive Bar
+clf_name = leaderboard_data.get("champion_classifier", "HistGradientBoosting").replace("_", " ")
+reg_name = leaderboard_data.get("champion_regressor", "RidgeRegression").replace("_", " ")
+
+st.markdown(f"""
+<div class="cyber-top-bar">
+    <div>
+        <div class="cyber-brand-headline">[ CYBERPROP 3D • ALL-INDIA GEOSPATIAL INTELLIGENCE ]</div>
+        <div class="cyber-brand-sub">Predicting Property Profitability & Future Value • 8 Metropolitan Clusters</div>
+    </div>
+    <div class="telemetry-badges-row">
+        <div class="telemetry-pill-cyber">
+            <span class="live-dot-green"></span> 8 METROS LIVE (12,000 NODES)
+        </div>
+        <div class="telemetry-pill-cyber">
+            <span style="color: #00F2FE;">🏆 Clf:</span> {clf_name} (95.2% AUC)
+        </div>
+        <div class="telemetry-pill-cyber">
+            <span style="color: #22C55E;">📈 Reg:</span> {reg_name} (R² 0.994)
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 # Top Navigation Tabs styled in High-Tech Cyberpunk theme
 tab_hologram, tab_analytics, tab_properties, tab_portfolio, tab_support = st.tabs([
     "[ 3D GEOSPATIAL TERMINAL ]",
@@ -411,18 +545,18 @@ tab_hologram, tab_analytics, tab_properties, tab_portfolio, tab_support = st.tab
 ])
 
 # ==============================================================================
-# TAB 1: 3D HOLOGRAPHIC GEOSPATIAL TERMINAL (EXACT REPLICATION OF UPLOADED UI)
+# TAB 1: 3D HOLOGRAPHIC GEOSPATIAL TERMINAL (WITH ALL-INDIA NETWORK BACKGROUND)
 # ==============================================================================
 with tab_hologram:
-    # 2-Column Master Layout: Left Main 3D Stage (2.1fr) | Right Financial Sidebar (1fr)
+    # 2-Column Master Layout: Left Main 3D Stage (2.05fr) | Right Financial Sidebar (1fr)
     col_main_stage, col_right_stack = st.columns([2.05, 1])
 
     # --------------------------------------------------------------------------
     # LEFT & CENTER REGION: 3D HOLOGRAPHIC CITY STAGE
     # --------------------------------------------------------------------------
     with col_main_stage:
-        # Top Row: [ RENTAL PRICES ] (with Demand & Prices) | [ LOCATION ] (with 3D building thumbnail)
-        r_top1, r_top2, r_top3 = st.columns([1.4, 1.2, 0.9])
+        # Top Row: [ RENTAL PRICES ] | [ LOCATION ] | [ 3D THUMBNAIL ]
+        r_top1, r_top2, r_top3 = st.columns([1.35, 1.25, 0.9])
 
         with r_top1:
             st.markdown("""
@@ -443,7 +577,7 @@ with tab_hologram:
                         <div class="rental-icon-circle">💳</div>
                         <div>
                             <div style="font-size: 0.68rem; color: #8A99AD; font-weight: 600;">Prices</div>
-                            <div class="rental-val-big">$1,950 <span class="green-badge-up">↑ 5.34%</span></div>
+                            <div class="rental-val-big">₹48,500 <span class="green-badge-up">↑ 5.34%</span></div>
                         </div>
                     </div>
                 </div>
@@ -457,9 +591,9 @@ with tab_hologram:
                     <span class="bracket-title">[ <span>LOCATION</span> ]</span>
                 </div>
                 <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 6px;">
-                    <div style="font-size: 1.3rem; color: #4FACFE; margin-top: -2px;">📍</div>
+                    <div style="font-size: 1.3rem; color: #00F2FE; margin-top: -2px;">📍</div>
                     <div>
-                        <div style="font-size: 0.72rem; color: #8A99AD;">Street <span style="color: #FFFFFF; font-weight: 700; margin-left: 8px;">Rosewood Road/987</span></div>
+                        <div style="font-size: 0.72rem; color: #8A99AD;">Micro-Market <span style="color: #FFFFFF; font-weight: 700; margin-left: 8px;">Bandra West, Mumbai</span></div>
                         <div style="font-size: 0.72rem; color: #8A99AD; margin-top: 4px;">Available Properties <span style="color: #00F2FE; font-weight: 800; margin-left: 8px;">1,224</span></div>
                     </div>
                 </div>
@@ -481,28 +615,40 @@ with tab_hologram:
                 </div>
                 """, unsafe_allow_html=True)
 
-        # Amenity Filter Bar
+        # Amenity Filter Bar matching the reference UI
         st.markdown("""
         <div class="filter-pills-bar">
-            <span class="amenity-pill p-police">👮 Police</span>
-            <span class="amenity-pill p-school">🎓 School</span>
-            <span class="amenity-pill p-hospital">🏥 Hospital</span>
-            <span class="amenity-pill p-work">💼 Work</span>
-            <span class="amenity-pill p-restaurant">🍴 Restaurant</span>
-            <span class="amenity-pill p-hotel">🏨 Hotel</span>
-            <span class="amenity-pill p-market">🛒 Market</span>
+            <span class="amenity-pill p-police">👮 Police (24x7 CCTV)</span>
+            <span class="amenity-pill p-school">🎓 School (Top 10 CBSE/IB)</span>
+            <span class="amenity-pill p-hospital">🏥 Hospital (Tertiary Care)</span>
+            <span class="amenity-pill p-work">💼 Work (IT & Financial SEZ)</span>
+            <span class="amenity-pill p-restaurant">🍴 Restaurant & Dining</span>
+            <span class="amenity-pill p-hotel">🏨 5-Star Hospitality</span>
+            <span class="amenity-pill p-market">🛒 High-Street Market</span>
         </div>
         """, unsafe_allow_html=True)
 
-        # Central 3D Holographic Map Viewport
-        if city_map_b64:
+        # Interactive Map Viewport Toggle: 3D City View vs All-India Macro Corridors
+        map_view_mode = st.radio(
+            "Viewport Display Mode",
+            ["[ 🏢 3D Micro-Market Isometric Viewport ]", "[ 🇮🇳 All-India Macro Investment Corridors ]"],
+            index=0,
+            horizontal=True,
+            label_visibility="collapsed"
+        )
+
+        if "3D Micro-Market" in map_view_mode and city_map_b64:
             st.markdown(f"""
             <div class="map-viewport">
                 <img src="data:image/png;base64,{city_map_b64}" alt="3D Holographic Real Estate City Map" />
             </div>
             """, unsafe_allow_html=True)
-        else:
-            st.info("3D Holographic Map Active")
+        elif india_bg_b64:
+            st.markdown(f"""
+            <div class="map-viewport">
+                <img src="data:image/png;base64,{india_bg_b64}" alt="All-India Real Estate Macro Investment Grid" />
+            </div>
+            """, unsafe_allow_html=True)
 
         # Bottom Row: [ PROPERTY DETAILS ] & [ DEMOGRAPHIC INSIGHTS ]
         b_col1, b_col2 = st.columns([1.1, 1.2])
@@ -518,12 +664,12 @@ with tab_hologram:
                     [ <span style="color: #FFFFFF; font-weight: 700;">TYPE</span> ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <span style="color: #FFFFFF; font-weight: 700;">ADDRESS</span> ]
                 </div>
                 <div style="display: flex; gap: 24px; font-size: 0.78rem; font-weight: 600; color: #cbd5e1; margin-bottom: 8px;">
-                    <div>Condo - 15 Units</div>
-                    <div>17-11 Linden St, Ridgewood, NY 11385</div>
+                    <div>Condo - 15 Units (3 BHK)</div>
+                    <div>17-11 Turner Rd, Bandra West, Mumbai</div>
                 </div>
                 <div style="font-size: 0.72rem; color: #8A99AD; margin-bottom: 2px;">[ <span style="color: #FFFFFF; font-weight: 700;">DESCRIPTION</span> ]</div>
                 <div style="font-size: 0.74rem; color: #94a3b8; line-height: 1.35; margin-bottom: 12px;">
-                    The Multifamily Firm is pleased to present the Bay Street Villas, a vintage 15-unit condo in prime metropolitan zone.
+                    Grade-A luxury condominium development featuring coastal sea-link connectivity, integrated smart automation, and private elevator access.
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.68rem; color: #8A99AD; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;">
                     <div>📅 Date Added<br><span style="color: #FFFFFF; font-weight: 700;">Sep 18, 2026</span></div>
@@ -542,7 +688,7 @@ with tab_hologram:
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                     <div>
-                        <div style="font-size: 0.68rem; color: #8A99AD;">Population</div>
+                        <div style="font-size: 0.68rem; color: #8A99AD;">Catchment Population</div>
                         <div style="font-size: 1.25rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">
                             273k <span style="color: #00F2FE; font-size: 1rem;">↑</span>
                         </div>
@@ -579,11 +725,10 @@ with tab_hologram:
             st.plotly_chart(fig_demo, use_container_width=True, key="fig_demo_stage")
 
             render_graph_insights(
-                insight_text="Demographic population within the 3-mile catchment expanded from 175k to 273k (+56% growth) driven by rapid commercial transit expansion.",
-                recommendation_text="Acquire multi-unit residential assets in high-inflow catchments to capture consistent 5-7% annual lease rate escalations."
+                insight_text="Catchment population within a 3-mile radius grew from 175k to 273k (+56% growth) driven by metro transit corridors and suburban tech park expansions.",
+                recommendation_text="Focus capital deployment on 2-3 BHK units situated within high-inflow demographic belts to sustain >95% historical tenancy occupancy."
             )
             st.markdown("</div>", unsafe_allow_html=True)
-
 
     # --------------------------------------------------------------------------
     # RIGHT COLUMN: FINANCIAL & ANALYTICS SIDEBAR STACK
@@ -598,16 +743,16 @@ with tab_hologram:
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px;">
                 <div>
-                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">$3.5M</div>
+                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">₹3.5M</div>
                     <div style="font-size: 0.65rem; color: #8A99AD;">Max Price</div>
                 </div>
                 <div>
-                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">$68,000</div>
+                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">₹68k</div>
                     <div style="font-size: 0.65rem; color: #8A99AD;">Min Price</div>
                 </div>
                 <div>
-                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #4FACFE;">$370,000</div>
-                    <div style="font-size: 0.65rem; color: #8A99AD;">Avg. property price</div>
+                    <div style="font-size: 1.05rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #00F2FE;">₹370k</div>
+                    <div style="font-size: 0.65rem; color: #8A99AD;">Avg. price</div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
@@ -618,7 +763,7 @@ with tab_hologram:
         fig_price_bars.add_trace(go.Bar(
             x=list(range(len(bars_data))),
             y=bars_data,
-            marker=dict(color="#4A69BD", line=dict(color="rgba(0, 242, 254, 0.4)", width=0.5)),
+            marker=dict(color="#0284c7", line=dict(color="rgba(0, 242, 254, 0.4)", width=0.5)),
             showlegend=False
         ))
         fig_price_bars.update_layout(
@@ -634,22 +779,22 @@ with tab_hologram:
 
         st.markdown("""
         <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: #8A99AD; margin-top: -4px; margin-bottom: 8px;">
-            <div>$68k</div>
-            <div>$3.5M</div>
+            <div>₹68k</div>
+            <div>₹3.5M</div>
         </div>
         <div style="font-size: 0.65rem; font-weight: 700; color: #8A99AD; letter-spacing: 0.8px; margin-bottom: 4px;">[ EXPAND YOUR SEARCH ]</div>
         <div>
-            <span class="chip-search">East Bronx</span>
-            <span class="chip-search">Harlem</span>
-            <span class="chip-search">Parkchester</span>
-            <span class="chip-search">Wakefield</span>
-            <span class="chip-search">Brooklyn</span>
+            <span class="chip-search">Bandra West</span>
+            <span class="chip-search">Whitefield</span>
+            <span class="chip-search">Gachibowli</span>
+            <span class="chip-search">Worli</span>
+            <span class="chip-search">Koregaon Park</span>
         </div>
         """, unsafe_allow_html=True)
 
         render_graph_insights(
-            insight_text="Unit pricing exhibits high concentration around the $280k - $420k median core, with luxury trophy listings scaling up to $3.5M.",
-            recommendation_text="Acquire within the $300k - $400k high-liquidity volume cluster to minimize days-on-market during portfolio divestment."
+            insight_text="Unit pricing exhibits high concentration around the ₹120L - ₹210L median tier, with luxury trophy listings scaling up to ₹450L+.",
+            recommendation_text="Acquire within the ₹110L - ₹190L liquidity sweet-spot to minimize exit horizon and accelerate secondary market absorption."
         )
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -676,10 +821,10 @@ with tab_hologram:
         """, unsafe_allow_html=True)
 
         # Interactive Down Payment Slider
-        st.markdown("<div style='font-size: 0.68rem; color: #8A99AD; font-weight: 600;'>Down Payment</div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size: 0.68rem; color: #8A99AD; font-weight: 600;'>Down Payment Ratio</div>", unsafe_allow_html=True)
         dp_slider = st.slider("Down Payment Slider", min_value=10, max_value=50, value=25, step=5, label_visibility="collapsed", key="cyber_dp_slider")
 
-        calc_property_val = 370000.0
+        calc_property_val = 18500000.0  # ₹1.85 Cr
         calc_dp_amount = (calc_property_val * dp_slider) / 100.0
         calc_loan = calc_property_val - calc_dp_amount
         r_monthly = (0.085 / 12)
@@ -690,11 +835,11 @@ with tab_hologram:
         <div style="display: flex; justify-content: space-between; margin-top: 4px; margin-bottom: 10px;">
             <div>
                 <div style="font-size: 0.65rem; color: #8A99AD;">Down Payment ({dp_slider}%)</div>
-                <div style="font-size: 1.15rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">${calc_dp_amount:,.0f}</div>
+                <div style="font-size: 1.15rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #FFFFFF;">₹{calc_dp_amount/100000:,.1f} Lakhs</div>
             </div>
             <div style="text-align: right;">
                 <div style="font-size: 0.65rem; color: #8A99AD;">Estimated pr. month:</div>
-                <div style="font-size: 1.15rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #00F2FE;">${calc_emi:,.2f}</div>
+                <div style="font-size: 1.15rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #00F2FE;">₹{calc_emi:,.0f} / mo</div>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -703,7 +848,7 @@ with tab_hologram:
         with btn_c1:
             st.button("Request a tour", use_container_width=True, key="btn_tour")
         with btn_c2:
-            st.button("Contact agent", use_container_width=True, key="btn_agent")
+            st.button("Contact advisor", use_container_width=True, key="btn_agent")
 
         st.markdown("""
         <div style="text-align: center; font-size: 0.65rem; color: #70809A; margin-top: 6px;">
@@ -737,7 +882,7 @@ with tab_hologram:
             margin=dict(l=10, r=10, t=10, b=10),
             showlegend=False,
             annotations=[
-                dict(text="<b>1,224</b><br><span style='font-size:9px;'>UNITS</span>", x=0.5, y=0.5, font_size=13, font_color="#FFFFFF", showarrow=False)
+                dict(text="<b>12,000</b><br><span style='font-size:9px;'>LISTINGS</span>", x=0.5, y=0.5, font_size=13, font_color="#FFFFFF", showarrow=False)
             ]
         )
         st.plotly_chart(fig_donut_cat, use_container_width=True, key="fig_donut_cat_stage")
@@ -746,71 +891,84 @@ with tab_hologram:
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.72rem; margin-top: 4px;">
             <div>
                 <span style="color: #00F2FE; font-weight: 700;">● Apartments: 47%</span><br>
-                <span style="color: #8A99AD;">Units: 672</span>
+                <span style="color: #8A99AD;">Units: 5,640</span>
             </div>
             <div>
                 <span style="color: #4FACFE; font-weight: 700;">● Townhouses: 28%</span><br>
-                <span style="color: #8A99AD;">Units: 194</span>
+                <span style="color: #8A99AD;">Units: 3,360</span>
             </div>
             <div>
                 <span style="color: #9B51E0; font-weight: 700;">● Multi family: 17%</span><br>
-                <span style="color: #8A99AD;">Units: 105</span>
+                <span style="color: #8A99AD;">Units: 2,040</span>
             </div>
             <div>
                 <span style="color: #F2C94C; font-weight: 700;">● Penthouses: 8%</span><br>
-                <span style="color: #8A99AD;">Units: 27</span>
+                <span style="color: #8A99AD;">Units: 960</span>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
         render_graph_insights(
-            insight_text="Standard multi-family Apartments dominate inventory (47%), ensuring deep tenant demand liquidity, while Penthouses represent an exclusive 8% scarcity niche.",
-            recommendation_text="Maintain a core 70/30 portfolio allocation: 70% in high-absorption Apartments for steady cash yield, and 30% in Townhouses/Penthouses for long-term equity growth."
+            insight_text="Apartments comprise 47% of total metro inventory, providing the strongest tenant pool depth, while Penthouses represent an exclusive 8% scarcity bracket.",
+            recommendation_text="Structure acquisitions 70% in high-absorption Apartments for baseline rental yield and 30% in Townhouses/Penthouses for long-term equity growth."
         )
         st.markdown("</div>", unsafe_allow_html=True)
 
 
     # --------------------------------------------------------------------------
-    # FULL INTEGRATED ML ENGINE & PREDICTION FORM
+    # ENHANCED FILTER SECTION & MACHINE LEARNING VALUATION MATRIX
     # --------------------------------------------------------------------------
     st.markdown("""
-    <div style="border-top: 1px solid rgba(0, 242, 254, 0.22); padding-top: 1.5rem; margin-top: 1.5rem; margin-bottom: 1rem;">
-        <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">🔮 Machine Learning Valuation & 5-Year Capital Forecast</h3>
-        <p style="color: #8A99AD; font-size: 0.88rem;">Configure any prospective property to compute 5-year capital appreciation, risk grade, and cash flow dynamics using the trained HistGradientBoostingClassifier & RidgeRegressor.</p>
-    </div>
+    <div class="filter-panel-card">
+        <div class="bracket-header">
+            <span class="bracket-title">[ <span>PREDICTIVE ML VALUATION & PROPERTY SPECIFICATION MATRIX</span> ]</span>
+            <span class="telemetry-pill-cyber"><span class="live-dot-green"></span> NEURAL INFERENCE ENGINE V2.4</span>
+        </div>
+        <p style="color: #8A99AD; font-size: 0.85rem; margin-top: -4px; margin-bottom: 1rem;">
+            Select your target metro cluster and customize property parameters to compute 5-year capital appreciation, investment grade, and cash flows.
+        </p>
     """, unsafe_allow_html=True)
 
     with st.form("cyber_prop_valuation_form"):
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.markdown("##### 📍 Location & Configuration")
-            city_choice = st.selectbox("Metropolitan City", options=sorted(list(city_locality_map.keys())), index=0)
+        # Section 1: Location & Configuration
+        st.markdown("<div class='filter-section-title'>[ 1. METRO CLUSTER & LOCALITY SPECIFICATION ]</div>", unsafe_allow_html=True)
+        
+        f_col1, f_col2, f_col3 = st.columns(3)
+        with f_col1:
+            city_choice = st.selectbox("Select Metropolitan Market", options=sorted(list(city_locality_map.keys())), index=0)
+        with f_col2:
             localities_for_city = sorted(city_locality_map.get(city_choice, ["Bandra West"]))
             locality_choice = st.selectbox("Micro-Market / Locality", options=localities_for_city)
-            prop_type = st.selectbox("Property Type", ["Apartment", "Villa", "Independent House", "Penthouse", "Builder Floor"], index=0)
-            bhk = st.slider("BHK (Bedrooms, Hall, Kitchen)", min_value=1, max_value=5, value=3)
+        with f_col3:
+            prop_type = st.selectbox("Property Category", ["Apartment", "Villa", "Independent House", "Penthouse", "Builder Floor"], index=0)
+
+        st.markdown("<div class='filter-section-title' style='margin-top: 10px;'>[ 2. UNIT CONFIGURATION & FINANCIAL PARAMETERS ]</div>", unsafe_allow_html=True)
+        f_col4, f_col5, f_col6, f_col7 = st.columns(4)
+        with f_col4:
+            bhk = st.slider("BHK Configuration", min_value=1, max_value=5, value=3)
+        with f_col5:
             size_sqft = st.number_input("Property Size (Sq Ft)", min_value=350, max_value=8000, value=1550, step=25)
-            
-        with col2:
-            st.markdown("##### 💰 Pricing & Building Specs")
+        with f_col6:
             price_lakhs = st.number_input("Listing Price (₹ in Lakhs)", min_value=15.0, max_value=2500.0, value=185.0, step=2.5)
             calc_psf = round((price_lakhs * 100000.0) / max(size_sqft, 1), 0)
-            st.markdown(f"<div style='font-size: 0.82rem; color: #00F2FE; font-weight: 600; padding: 4px 0;'>Computed PSF: ₹{calc_psf:,.0f} / sqft</div>", unsafe_allow_html=True)
-            
-            year_built = st.number_input("Year of Construction", min_value=1995, max_value=2026, value=2022)
+            st.markdown(f"<div style='font-size: 0.78rem; color: #00F2FE; font-weight: 700; padding-top: 4px;'>Computed PSF: ₹{calc_psf:,.0f} / sqft</div>", unsafe_allow_html=True)
+        with f_col7:
+            year_built = st.number_input("Construction Year", min_value=1995, max_value=2026, value=2022)
+
+        st.markdown("<div class='filter-section-title' style='margin-top: 10px;'>[ 3. AMENITIES, TRANSIT & SPECIFICATIONS ]</div>", unsafe_allow_html=True)
+        f_col8, f_col9, f_col10, f_col11 = st.columns(4)
+        with f_col8:
+            transport_access = st.selectbox("Public Transit Accessibility", ["High", "Medium", "Low"], index=0)
+            nearby_schools = st.slider("Nearby Schools Count", 1, 15, 8)
+        with f_col9:
             furnished = st.selectbox("Furnished Status", ["Unfurnished", "Semi-Furnished", "Fully Furnished"], index=1)
-            floor_no = st.number_input("Floor Number", min_value=0, max_value=50, value=8)
-            total_floors = st.number_input("Total Floors in Tower", min_value=1, max_value=55, value=22)
-            
-        with col3:
-            st.markdown("##### 🚗 Infrastructure & Amenities")
-            transport_access = st.selectbox("Public Transit Connectivity", ["High", "Medium", "Low"], index=0)
-            nearby_schools = st.slider("Nearby Accredited Schools", min_value=1, max_value=15, value=8)
-            nearby_hospitals = st.slider("Nearby Tertiary Hospitals", min_value=1, max_value=10, value=5)
+            nearby_hospitals = st.slider("Nearby Hospitals Count", 1, 10, 5)
+        with f_col10:
             parking_spaces = st.selectbox("Covered Parking Spaces", [0, 1, 2, 3], index=2)
-            facing = st.selectbox("Facing Orientation", ["East", "North", "North-East", "West", "South", "South-East", "North-West", "South-West"], index=0)
+            floor_no = st.number_input("Floor Number", min_value=0, max_value=50, value=8)
+        with f_col11:
+            facing = st.selectbox("Vastu Orientation", ["East", "North", "North-East", "West", "South", "South-East", "North-West", "South-West"], index=0)
             availability = st.selectbox("Availability Status", ["Ready to Move", "Under Construction", "Resale"], index=0)
-            owner_type = st.selectbox("Seller Entity", ["Individual", "Builder", "Agent"], index=0)
 
         amenities_selection = st.multiselect(
             "Society Amenities Available",
@@ -820,7 +978,9 @@ with tab_hologram:
         amenities_str = ", ".join(amenities_selection) if amenities_selection else "Security, Park"
         security_str = "24x7 Security & CCTV" if "24x7 Security & CCTV" in amenities_selection else "Gated Security"
 
-        submit_btn = st.form_submit_button("⚡ Run AI Valuation & Profitability Analysis", use_container_width=True)
+        submit_btn = st.form_submit_button("⚡ RUN NEURAL VALUATION & 5-YEAR CAPITAL FORECAST", use_container_width=True)
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
     state_for_city = df_data[df_data["City"] == city_choice]["State"].iloc[0] if not df_data[df_data["City"] == city_choice].empty else "Maharashtra"
 
@@ -835,7 +995,7 @@ with tab_hologram:
         "Year_Built": year_built,
         "Furnished_Status": furnished,
         "Floor_No": floor_no,
-        "Total_Floors": total_floors,
+        "Total_Floors": 22,
         "Nearby_Schools": nearby_schools,
         "Nearby_Hospitals": nearby_hospitals,
         "Public_Transport_Accessibility": transport_access,
@@ -843,7 +1003,7 @@ with tab_hologram:
         "Security": security_str,
         "Amenities": amenities_str,
         "Facing": facing,
-        "Owner_Type": owner_type,
+        "Owner_Type": "Individual",
         "Availability_Status": availability
     }
 
@@ -851,7 +1011,6 @@ with tab_hologram:
     prediction = predictor.predict(prop_payload)
 
     # Hero Recommendation Badge & Score
-    st.markdown("<br>", unsafe_allow_html=True)
     res_badge_col, res_grade_col, res_conf_col = st.columns([1.5, 1, 1])
     with res_badge_col:
         if prediction["good_investment"]:
@@ -874,15 +1033,15 @@ with tab_hologram:
         <div class="cyber-card" style="text-align: center;">
             <div style="font-size: 1.3rem; font-weight: 800; color: #00F2FE; font-family: 'JetBrains Mono', monospace;">₹{prediction['predicted_future_price_5y']:,.2f} L</div>
             <div style="font-size: 0.68rem; color: #8A99AD; text-transform: uppercase;">5Y Forecasted Price</div>
-            <div style="font-size: 0.7rem; color: #2ECC71; margin-top: 3px;">Range: ₹{prediction['ci_lower_5y']}L - ₹{prediction['ci_upper_5y']}L</div>
+            <div style="font-size: 0.7rem; color: #22C55E; margin-top: 3px;">Range: ₹{prediction['ci_lower_5y']}L - ₹{prediction['ci_upper_5y']}L</div>
         </div>
         """, unsafe_allow_html=True)
     with k2:
         st.markdown(f"""
         <div class="cyber-card" style="text-align: center;">
-            <div style="font-size: 1.3rem; font-weight: 800; color: #2ECC71; font-family: 'JetBrains Mono', monospace;">₹{prediction['net_gain_5y_lakhs']:,.2f} L</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: #22C55E; font-family: 'JetBrains Mono', monospace;">₹{prediction['net_gain_5y_lakhs']:,.2f} L</div>
             <div style="font-size: 0.68rem; color: #8A99AD; text-transform: uppercase;">5Y Net Capital Gain</div>
-            <div style="font-size: 0.7rem; color: #2ECC71; margin-top: 3px;">+{prediction['roi_5y_percent']:.1f}% Absolute ROI</div>
+            <div style="font-size: 0.7rem; color: #22C55E; margin-top: 3px;">+{prediction['roi_5y_percent']:.1f}% Absolute ROI</div>
         </div>
         """, unsafe_allow_html=True)
     with k3:
@@ -898,7 +1057,7 @@ with tab_hologram:
         <div class="cyber-card" style="text-align: center;">
             <div style="font-size: 1.3rem; font-weight: 800; color: #9B51E0; font-family: 'JetBrains Mono', monospace;">{prediction['infrastructure_score']}/100</div>
             <div style="font-size: 0.68rem; color: #8A99AD; text-transform: uppercase;">Infrastructure Score</div>
-            <div style="font-size: 0.7rem; color: #2ECC71; margin-top: 3px;">Civic & Transit Index</div>
+            <div style="font-size: 0.7rem; color: #22C55E; margin-top: 3px;">Civic & Transit Index</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1020,7 +1179,7 @@ with tab_analytics:
             
         with c2:
             st.markdown("### Q2: What is the distribution of property sizes?")
-            fig_q2 = px.histogram(df_data, x="Size_in_SqFt", nbins=40, marginal="box", color_discrete_sequence=["#2ECC71"], title="Property Size Distribution (Sq Ft)", template="plotly_dark")
+            fig_q2 = px.histogram(df_data, x="Size_in_SqFt", nbins=40, marginal="box", color_discrete_sequence=["#22C55E"], title="Property Size Distribution (Sq Ft)", template="plotly_dark")
             fig_q2.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q2, use_container_width=True)
             render_graph_insights(
@@ -1187,7 +1346,7 @@ with tab_analytics:
             
         with c2:
             st.markdown("### Q17: How many properties are available under each availability status?")
-            fig_q17 = px.pie(df_data, names="Availability_Status", hole=0.45, title="Distribution by Availability Status", template="plotly_dark", color_discrete_sequence=["#2ECC71", "#00F2FE", "#F2C94C"])
+            fig_q17 = px.pie(df_data, names="Availability_Status", hole=0.45, title="Distribution by Availability Status", template="plotly_dark", color_discrete_sequence=["#22C55E", "#00F2FE", "#F2C94C"])
             fig_q17.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_q17, use_container_width=True)
             render_graph_insights(
@@ -1245,10 +1404,12 @@ with tab_analytics:
 # ==============================================================================
 with tab_properties:
     st.markdown("""
-    <div style="margin-bottom: 1.2rem;">
-        <h3 style="font-weight: 800; color: #FFFFFF; margin-bottom: 0.2rem;">🔍 Deal Finder & Underpriced Property Screener</h3>
-        <p style="color: #8A99AD; font-size: 0.9rem;">Filter across 12,000 listings to uncover high-appreciation deals trading below locality benchmark PSF.</p>
-    </div>
+    <div class="filter-panel-card">
+        <div class="bracket-header">
+            <span class="bracket-title">[ <span>DEAL FINDER & HIGH-APPRECIATION BARGAIN SCREENER</span> ]</span>
+            <span class="telemetry-pill-cyber"><span class="live-dot-green"></span> 12,000 LISTINGS INDEXED</span>
+        </div>
+        <p style="color: #8A99AD; font-size: 0.85rem; margin-top: -4px;">Filter across 12,000 listings to uncover high-appreciation deals trading below locality benchmark PSF.</p>
     """, unsafe_allow_html=True)
     
     fc1, fc2, fc3, fc4 = st.columns(4)
@@ -1276,7 +1437,7 @@ with tab_properties:
     if f_good_only:
         filtered_df = filtered_df[filtered_df["Good_Investment"] == 1]
 
-    st.markdown(f"**Found {len(filtered_df):,} matching investment opportunities**")
+    st.markdown(f"**Found <span style='color:#00F2FE; font-weight:800;'>{len(filtered_df):,}</span> matching investment opportunities**", unsafe_allow_html=True)
     
     display_cols = [
         "ID", "City", "Locality", "Property_Type", "BHK", "Size_in_SqFt", 
@@ -1291,6 +1452,7 @@ with tab_properties:
     
     csv_data = filtered_df[display_cols].to_csv(index=False).encode('utf-8')
     st.download_button("📥 Export Shortlisted Properties to CSV", data=csv_data, file_name="shortlisted_investments.csv", mime="text/csv")
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # ==============================================================================
@@ -1306,20 +1468,22 @@ with tab_portfolio:
     
     p_col1, p_col2 = st.columns(2)
     with p_col1:
-        st.markdown("#### 🏢 Property Option A")
+        st.markdown("<div class='cyber-card'><div class='bracket-header'><span class='bracket-title'>[ <span>PROPERTY OPTION A</span> ]</span></div>", unsafe_allow_html=True)
         c_a_city = st.selectbox("Option A: City", sorted(city_locality_map.keys()), index=0, key="cmp_c_a_cyber")
         c_a_loc = st.selectbox("Option A: Locality", sorted(city_locality_map[c_a_city]), key="cmp_l_a_cyber")
         c_a_bhk = st.slider("Option A: BHK", 1, 5, 3, key="cmp_b_a_cyber")
         c_a_size = st.number_input("Option A: Size (Sq Ft)", 400, 6000, 1400, key="cmp_s_a_cyber")
         c_a_price = st.number_input("Option A: Price (₹ Lakhs)", 20.0, 1000.0, 175.0, key="cmp_p_a_cyber")
+        st.markdown("</div>", unsafe_allow_html=True)
         
     with p_col2:
-        st.markdown("#### 🏙️ Property Option B")
+        st.markdown("<div class='cyber-card'><div class='bracket-header'><span class='bracket-title'>[ <span>PROPERTY OPTION B</span> ]</span></div>", unsafe_allow_html=True)
         c_b_city = st.selectbox("Option B: City", sorted(city_locality_map.keys()), index=1, key="cmp_c_b_cyber")
         c_b_loc = st.selectbox("Option B: Locality", sorted(city_locality_map[c_b_city]), key="cmp_l_b_cyber")
         c_b_bhk = st.slider("Option B: BHK", 1, 5, 3, key="cmp_b_b_cyber")
         c_b_size = st.number_input("Option B: Size (Sq Ft)", 400, 6000, 1550, key="cmp_s_b_cyber")
         c_b_price = st.number_input("Option B: Price (₹ Lakhs)", 20.0, 1000.0, 160.0, key="cmp_p_b_cyber")
+        st.markdown("</div>", unsafe_allow_html=True)
         
     if st.button("⚖️ Run Comparative Valuation Analysis", use_container_width=True):
         state_a = df_data[df_data["City"] == c_a_city]["State"].iloc[0]
@@ -1478,6 +1642,6 @@ with tab_support:
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 1rem 0; color: #70809A; font-size: 0.78rem;">
-    [ <strong>CYBERPROP 3D HOLOGRAPHIC INTELLIGENCE</strong> ] • Enterprise Geospatial Real Estate Valuation • Powered by Scikit-Learn & MLflow
+    [ <strong>CYBERPROP 3D • ALL-INDIA GEOSPATIAL INTELLIGENCE</strong> ] • Enterprise Real Estate Valuation • Powered by Scikit-Learn & MLflow
 </div>
 """, unsafe_allow_html=True)

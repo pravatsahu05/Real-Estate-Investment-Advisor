@@ -170,7 +170,7 @@ st.markdown(f"""
         position: relative;
     }}
     
-    /* Bracket Headers [ TITLE ] Details > */
+    /* Bracket Headers */
     .bracket-header {{
         display: flex;
         justify-content: space-between;
@@ -188,17 +188,6 @@ st.markdown(f"""
     
     .bracket-title span {{
         color: #FFFFFF;
-    }}
-    
-    .bracket-link {{
-        font-size: 0.85rem;
-        color: #38BDF8;
-        font-weight: 700;
-        cursor: pointer;
-        transition: color 0.2s ease;
-    }}
-    .bracket-link:hover {{
-        color: #00F2FE;
     }}
     
     /* Enhanced Filter Section */
@@ -219,37 +208,6 @@ st.markdown(f"""
         color: #00F2FE;
         margin-bottom: 0.65rem;
     }}
-    
-    /* Amenity Filter Bar */
-    .filter-pills-bar {{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 1.1rem;
-    }}
-    
-    .amenity-pill {{
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 7px 16px;
-        border-radius: 10px;
-        font-size: 0.88rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }}
-    .amenity-pill:hover {{
-        transform: translateY(-2px);
-    }}
-    
-    .p-police {{ background: rgba(168, 85, 247, 0.2); border: 1.5px solid #A855F7; color: #E9D5FF; }}
-    .p-school {{ background: rgba(250, 204, 21, 0.2); border: 1.5px solid #FACC15; color: #FEF08A; }}
-    .p-hospital {{ background: rgba(0, 242, 254, 0.2); border: 1.5px solid #00F2FE; color: #CFFAFE; }}
-    .p-work {{ background: rgba(56, 189, 248, 0.2); border: 1.5px solid #38BDF8; color: #BAE6FD; }}
-    .p-restaurant {{ background: rgba(34, 197, 94, 0.2); border: 1.5px solid #22C55E; color: #BBF7D0; }}
-    .p-hotel {{ background: rgba(20, 184, 166, 0.2); border: 1.5px solid #14B8A6; color: #CCFBF1; }}
-    .p-market {{ background: rgba(244, 63, 94, 0.2); border: 1.5px solid #F43F5E; color: #FECDD3; }}
     
     /* Rental Demand Mini Tiles */
     .rental-sub-box {{
@@ -287,25 +245,6 @@ st.markdown(f"""
         font-weight: 700;
         color: #22C55E;
         margin-left: 8px;
-    }}
-    
-    /* Search Chips */
-    .chip-search {{
-        display: inline-block;
-        background: #162044;
-        border: 1px solid rgba(0, 242, 254, 0.3);
-        border-radius: 8px;
-        padding: 5px 12px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: #E2E8F0;
-        margin: 3px 4px 3px 0;
-        cursor: pointer;
-    }}
-    .chip-search:hover {{
-        background: rgba(0, 242, 254, 0.2);
-        border-color: #00F2FE;
-        color: #FFFFFF;
     }}
     
     /* Structured Analytical Insight & Recommendation Blocks */
@@ -524,7 +463,6 @@ with tab_hologram:
             <div class="cyber-card">
                 <div class="bracket-header">
                     <span class="bracket-title">[ <span>RENTAL VALUE & DEMAND</span> ]</span>
-                    <span class="bracket-link">Details &gt;</span>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                     <div class="rental-sub-box">
@@ -575,19 +513,6 @@ with tab_hologram:
             </div>
             """, unsafe_allow_html=True)
 
-        # Amenity Filter Bar with clear, larger pill labels
-        st.markdown("""
-        <div class="filter-pills-bar">
-            <span class="amenity-pill p-police">👮 Police (24x7 Security & CCTV)</span>
-            <span class="amenity-pill p-school">🎓 Accredited Schools (CBSE/IB)</span>
-            <span class="amenity-pill p-hospital">🏥 Multi-Speciality Hospitals</span>
-            <span class="amenity-pill p-work">💼 IT Tech Parks & SEZs</span>
-            <span class="amenity-pill p-restaurant">🍴 Food & Lifestyle Corridors</span>
-            <span class="amenity-pill p-hotel">🏨 Luxury Hospitality</span>
-            <span class="amenity-pill p-market">🛒 High-Street Retails</span>
-        </div>
-        """, unsafe_allow_html=True)
-
         # Middle Stage: [ PROPERTY ASSET PROFILE ] & [ DEMOGRAPHIC CATCHMENT INSIGHTS ]
         b_col1, b_col2 = st.columns([1.1, 1.2])
 
@@ -596,7 +521,6 @@ with tab_hologram:
             <div class="cyber-card">
                 <div class="bracket-header">
                     <span class="bracket-title">[ <span>PROPERTY ASSET PROFILE</span> ]</span>
-                    <span class="bracket-link">View more &gt;</span>
                 </div>
                 <div style="font-size: 0.85rem; color: #CBD5E1; margin-bottom: 4px;">
                     [ <span style="color: #00F2FE; font-weight: 800;">CATEGORY</span> ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <span style="color: #00F2FE; font-weight: 800;">LOCATION</span> ]
@@ -622,7 +546,6 @@ with tab_hologram:
             <div class="cyber-card">
                 <div class="bracket-header">
                     <span class="bracket-title">[ <span>DEMOGRAPHIC CATCHMENT INSIGHTS</span> ]</span>
-                    <span style="font-size: 0.9rem; color: #CBD5E1; font-weight: 800;">&lt; &nbsp; &gt;</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                     <div>
@@ -631,10 +554,8 @@ with tab_hologram:
                             273,000 <span style="color: #00F2FE; font-size: 1.1rem;">↑ +56%</span>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 6px;">
-                        <span style="font-size: 0.82rem; background: rgba(255,255,255,0.08); padding: 5px 12px; border-radius: 6px; color: #CBD5E1; font-weight: 600;">1 Mile</span>
-                        <span style="font-size: 0.82rem; background: #00F2FE; padding: 5px 12px; border-radius: 6px; color: #070A18; font-weight: 800;">3 Miles</span>
-                        <span style="font-size: 0.82rem; background: rgba(255,255,255,0.08); padding: 5px 12px; border-radius: 6px; color: #CBD5E1; font-weight: 600;">5 Miles</span>
+                    <div style="font-size: 0.85rem; color: #00F2FE; font-weight: 700; background: rgba(0, 242, 254, 0.12); border: 1px solid rgba(0, 242, 254, 0.35); padding: 5px 12px; border-radius: 8px;">
+                        3-Mile Primary Catchment
                     </div>
                 </div>
             """, unsafe_allow_html=True)
@@ -680,7 +601,6 @@ with tab_hologram:
         <div class="cyber-card">
             <div class="bracket-header">
                 <span class="bracket-title">[ <span>PRICE STATISTICS & DISTRIBUTION</span> ]</span>
-                <span class="bracket-link">View more &gt;</span>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px;">
                 <div>
@@ -719,17 +639,12 @@ with tab_hologram:
         st.plotly_chart(fig_price_bars, use_container_width=True, key="fig_price_bars_stage")
 
         st.markdown("""
-        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: #CBD5E1; margin-top: 2px; margin-bottom: 10px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: #CBD5E1; margin-top: 2px; margin-bottom: 8px;">
             <div>₹42.0 Lakhs</div>
             <div>₹3.50 Crores</div>
         </div>
-        <div style="font-size: 0.82rem; font-weight: 800; color: #00F2FE; letter-spacing: 1px; margin-bottom: 6px;">[ EXPAND YOUR SEARCH ]</div>
-        <div>
-            <span class="chip-search">Bandra West</span>
-            <span class="chip-search">Whitefield</span>
-            <span class="chip-search">Gachibowli</span>
-            <span class="chip-search">Worli</span>
-            <span class="chip-search">Koregaon Park</span>
+        <div style="font-size: 0.85rem; color: #CBD5E1; border-top: 1.5px solid rgba(255,255,255,0.08); padding-top: 8px;">
+            Market Scope: <span style="color: #00F2FE; font-weight: 800;">12,000 Verified Listings Across 8 Metros</span>
         </div>
         """, unsafe_allow_html=True)
 
@@ -783,17 +698,9 @@ with tab_hologram:
                 <div style="font-size: 1.45rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #00F2FE;">₹{calc_emi:,.0f} / mo</div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
-
-        btn_c1, btn_c2 = st.columns(2)
-        with btn_c1:
-            st.button("Request a tour", use_container_width=True, key="btn_tour")
-        with btn_c2:
-            st.button("Contact advisor", use_container_width=True, key="btn_agent")
-
-        st.markdown("""
-        <div style="text-align: center; font-size: 0.82rem; color: #CBD5E1; font-weight: 600; margin-top: 8px;">
-            Immediate viewing available as early as today at 11:00 am
+        <div style="background: rgba(0, 242, 254, 0.08); border: 1.5px solid rgba(0, 242, 254, 0.25); border-radius: 10px; padding: 10px 14px; text-align: center; margin-top: 10px;">
+            <div style="font-size: 0.88rem; color: #CBD5E1; font-weight: 700;">Mortgage Underwriting Status</div>
+            <div style="font-size: 0.95rem; color: #22C55E; font-weight: 800; margin-top: 2px;">✓ Pre-Qualified 15Y Fixed Amortization Profile</div>
         </div>
         </div>
         """, unsafe_allow_html=True)

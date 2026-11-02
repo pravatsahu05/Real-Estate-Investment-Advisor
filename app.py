@@ -25,8 +25,8 @@ from src.predictor import RealEstateAdvisorPredictor
 
 # Page Configuration: Full width, completely collapsed sidebar
 st.set_page_config(
-    page_title="CyberProp 3D | India Real Estate Investment Terminal",
-    page_icon="🌐",
+    page_title="Real Estate Investment Advisor | Market Intelligence Terminal",
+    page_icon="🏢",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -466,7 +466,7 @@ reg_name = leaderboard_data.get("champion_regressor", "RidgeRegression").replace
 st.markdown(f"""
 <div class="cyber-top-bar">
     <div>
-        <div class="cyber-brand-headline">[ CYBERPROP 3D • ALL-INDIA GEOSPATIAL INTELLIGENCE ]</div>
+        <div class="cyber-brand-headline">[ REAL ESTATE INVESTMENT ADVISOR ]</div>
         <div class="cyber-brand-sub">Predictive Real Estate Valuation & Future Capital Growth • 8 Metropolitan Hubs</div>
     </div>
     <div class="telemetry-badges-row">
@@ -1538,6 +1538,6 @@ with tab_support:
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 1.2rem 0; color: #CBD5E1; font-size: 0.9rem; font-weight: 600;">
-    [ <strong>CYBERPROP 3D • ALL-INDIA GEOSPATIAL INTELLIGENCE</strong> ] • Enterprise Real Estate Valuation • Powered by Scikit-Learn & MLflow
+    [ <strong>REAL ESTATE INVESTMENT ADVISOR</strong> ] • Enterprise Real Estate Valuation • Powered by Scikit-Learn & MLflow
 </div>
 """, unsafe_allow_html=True)
